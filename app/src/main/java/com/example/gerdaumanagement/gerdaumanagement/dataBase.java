@@ -35,7 +35,7 @@ public class dataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table usuarios(_id integer primary key autoincrement, nome text not null, email text not null, np integer not null, tipoFunc text not null, senha text not null, login text not null);");
-        db.execSQL("creadtable amcMensal (_id integer prumary key autoincrement, questao text not null, potencial text nor null, titulo text not null, item text not null, resposta text");
+        db.execSQL("cread table amcMensal (_id integer prumary key autoincrement, questao text not null, potencial text nor null, titulo text not null, item text not null, resposta text");
 
         ContentValues admin = new ContentValues();
         admin.put("nome" , "admin");
