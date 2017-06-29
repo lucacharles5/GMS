@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Gerdau Management</string>
+    <string name="titulo1">Gerdau</string>
+    <string name="titulo2">Management</string>
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="recuperarSenha">Recuperar Senha</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="construindo">Desculpe o transtorno.Estamos trabalhando com essa funcionalidade</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="title_activity_menu_drawer">Início</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="cargo"> Técnico de Segurança</string>
+    <string name="colaborador">Catarina Adriana de Souza </string>
+
+    <string name="amc"> AMC</string>
+    <string name="media"> média </string>
+
+    <string name="igp5s"> IGP - 5S </string>
+
+    <string name="ipl">IPL</string>
+    <string name="oac">OAC</string>
+    <string name="ipu">IPU</string>
+    <string name="horaSeg">Hora de segurança</string>
+    <string name="riscoC">Risco crítico</string>
+    <string name="nota">nota</string>
+    <string name="quantidade">quantidade</string>
+
+    <string name="hora">hora</string>
+
+    <string name="buscarContratada">Buscar Contratada</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="tipos">
+        <item>Mensal</item>
+        <item>Trimestral</item>
+        <item>Semestral</item>
+    </string-array>
+
+    <string-array name="tipoFunc">
+        <item>Gestor</item>
+        <item>Técnico de segurança</item>
+        <item>Surpevisor</item>
+        <item>Encarregado</item>
+    </string-array>
+
+</resources>

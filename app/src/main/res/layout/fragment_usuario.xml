@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.gerdaumanagement.gerdaumanagement.usuario">
+
+    <ListView
+        android:id="@+id/listaUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addUser">
+    </ListView>
+
+    <Button
+        android:id="@+id/addUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradiente_azul_semconor"
+        android:text="Adicionar Usuário"
+        android:textColor="@color/cinza"
+
+        android:layout_below="@+id/relativeLayout"
+        android:layout_marginTop="2dp"/>
+
+</RelativeLayout>

@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/top"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="2dp"
+    tools:context="com.example.gerdaumanagement.gerdaumanagement.adicionarAmc">
+
+    <RelativeLayout
+        android:id="@+id/cadastroAvaliador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shadow_grey"
+        android:paddingBottom="10dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/colaboradoresAmc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Avaliador"
+            android:imeOptions="actionDone"
+            android:inputType="text">
+
+        </AutoCompleteTextView>
+
+
+        <AutoCompleteTextView
+            android:id="@+id/contratadasAmc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/colaboradoresAmc"
+            android:layout_below="@+id/colaboradoresAmc"
+            android:hint="Contratada"
+            android:imeOptions="actionDone"
+            android:inputType="text">
+
+        </AutoCompleteTextView>
+
+
+        <EditText
+            android:id="@+id/dataRealizada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/contratadasAmc"
+            android:layout_below="@+id/contratadasAmc"
+            android:clickable="true"
+            android:ems="6"
+            android:focusableInTouchMode="true"
+            android:hint="Data Realizada"
+            android:imeOptions="actionDone"
+            android:inputType="date" />
+
+        <Spinner
+            android:id="@+id/spinnerTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/dataRealizada"
+            android:layout_alignTop="@+id/dataRealizada"
+            android:layout_toEndOf="@+id/dataRealizada" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/contentTipo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignEnd="@+id/cadastroAvaliador"
+        android:layout_alignStart="@+id/cadastroAvaliador"
+        android:layout_below="@+id/cadastroAvaliador">
+
+    </RelativeLayout>
+
+</RelativeLayout>

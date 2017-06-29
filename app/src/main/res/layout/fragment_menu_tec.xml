@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cinza"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.gerdaumanagement.gerdaumanagement.MenuDrawer">
+
+    <LinearLayout
+        android:id="@+id/menuTecConteudo"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/idAmc"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/shadow_grey"
+            android:onClick="selecionaMenuTec">
+
+            <ImageView
+                android:id="@+id/ic_amc"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/ic_amc" />
+
+            <TextView
+                android:id="@+id/amc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/amc"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/empresaAmc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/ic_amc"
+                android:text="ABC Empresa"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/mediaAmc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/empresaAmc"
+                android:layout_marginLeft="180dp"
+                android:text="@string/media" />
+
+            <TextView
+                android:id="@+id/mediaValorAmc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/mediaAmc"
+                android:paddingLeft="5dp"
+                android:text="81,6%"
+                android:textSize="25sp" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/idIgp"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="2"
+            android:background="@drawable/shadow_grey"
+            android:clickable="true"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/igp5s"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/igp5s"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/ic_igp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/ic_igp" />
+
+
+            <TextView
+                android:id="@+id/empresaIgp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/ic_igp"
+                android:text="Corporação Umbrella"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/mediaIgp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/empresaIgp"
+                android:layout_marginLeft="180dp"
+                android:text="@string/media" />
+
+
+            <TextView
+                android:id="@+id/mediaValorIgp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/mediaIgp"
+                android:paddingLeft="5dp"
+                android:text="8"
+                android:textSize="25sp" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/idIpl"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/shadow_grey"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/ipl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ipl"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/ic_ipl"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/ic_ipl" />
+
+            <TextView
+                android:id="@+id/colabIpl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/ic_ipl"
+                android:text="Luíz Claúdio"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/notaIpl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/colabIpl"
+                android:layout_marginLeft="180dp"
+                android:text="@string/nota" />
+
+
+            <TextView
+                android:id="@+id/valorNotaIpl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/notaIpl"
+                android:paddingLeft="5dp"
+                android:text="75"
+                android:textSize="25sp" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/idOac"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/shadow_grey"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/oac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/oac"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/ic_oac"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/ic_oac" />
+
+            <TextView
+                android:id="@+id/colabOac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/ic_oac"
+                android:text="Antônio Carlos"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/notaOac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/colabOac"
+                android:layout_marginLeft="180dp"
+                android:text="@string/quantidade" />
+
+
+            <TextView
+                android:id="@+id/valorNotaOac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/notaOac"
+                android:paddingLeft="5dp"
+                android:text="8"
+                android:textSize="25sp" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/idIpu"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/shadow_grey"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/ipu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ipu"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/ic_ipu"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/ic_ipu" />
+
+
+            <TextView
+                android:id="@+id/colabIpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/ic_ipu"
+                android:text="Antônio Carlos"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/horaIpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/colabIpu"
+                android:layout_marginLeft="180dp"
+                android:text="@string/hora" />
+
+
+            <TextView
+                android:id="@+id/valorHoraIpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/horaIpu"
+                android:paddingLeft="5dp"
+                android:text="13:45"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/idHoraSeg"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/shadow_grey"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/horaSeg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/horaSeg"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/ic_horaSeg"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/ic_hrseg" />
+
+            <TextView
+                android:id="@+id/colabHoraSeg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/ic_horaSeg"
+                android:text="Maria Clara"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/quantidadeHoraSeg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/colabHoraSeg"
+                android:layout_marginLeft="180dp"
+                android:text="@string/quantidade" />
+
+
+            <TextView
+                android:id="@+id/quantidadeHoraSegd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/quantidadeHoraSeg"
+                android:paddingLeft="5dp"
+                android:text="6"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/idRiscoC"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="35dp"
+            android:layout_weight="2"
+            android:background="@drawable/shadow_grey"
+            android:clickable="true"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/riscoCri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/riscoC"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/ic_riscoc"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/ic_riscoc" />
+
+            <TextView
+                android:id="@+id/mediaRiscoCri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignTop="@+id/valorMediaRiscoCri"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="15dp"
+
+                android:gravity="center"
+                android:text="@string/media"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/valorMediaRiscoCri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/mediaRiscoCri"
+                android:paddingLeft="5dp"
+                android:text="90%"
+                android:textSize="25sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="27dp"
+                android:layout_toEndOf="@+id/ic_riscoc"
+                android:max="100"
+                android:progress="90" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,106 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adicionar_usuario">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/shadow_grey"
+        android:layout_margin="5dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/relativeLayout">
+
+        <EditText
+            android:id="@+id/nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Nome"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Email"
+            android:layout_below="@+id/nome"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:id="@+id/np"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="8"
+            android:inputType="number"
+            android:hint="NP"
+            android:layout_below="@+id/email"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:id="@+id/tipoFunc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/np"
+            android:layout_toEndOf="@+id/np"
+            android:layout_below="@+id/email" />
+
+        <EditText
+            android:id="@+id/senha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="8"
+            android:inputType="text"
+            android:hint="Senha"
+            android:layout_alignBaseline="@+id/login"
+            android:layout_alignBottom="@+id/login"
+            android:layout_toEndOf="@+id/login" />
+
+        <EditText
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="8"
+            android:inputType="text"
+            android:hint="Usuário"
+            android:layout_below="@+id/np"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/salvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout"
+        android:background="@drawable/gradiente_azul_semconor"
+        android:text="Salvar"
+        android:textColor="@color/cinza"
+        />
+
+   <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignBottom="@+id/salvar">
+
+        <Button
+            android:id="@+id/editarUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/salvar"
+            android:background="@drawable/gradiente_azul_semconor"
+            android:text="Editar Usuário"
+            android:textColor="@color/cinza"
+             android:visibility="gone"/>
+
+    </FrameLayout>
+
+</RelativeLayout>

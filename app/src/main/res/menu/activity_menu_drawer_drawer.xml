@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home"
+            android:title="Início" />
+
+        <item
+            android:id="@+id/perfil"
+            android:icon="@drawable/ic_account"
+            android:title="Perfil" />
+
+        <item
+            android:id="@+id/report"
+            android:icon="@drawable/ic_report"
+            android:title="Relatórios" />
+
+
+
+    </group>
+
+    <item android:title="Ferramentas">
+        <menu>
+
+            <item
+                android:id="@+id/usuario"
+                android:icon="@drawable/gerenciauser"
+                android:title="Usuários" />
+
+            <item
+                android:id="@+id/save"
+                android:icon="@drawable/ic_save"
+                android:title="Enviar dados" />
+
+            <item
+                android:id="@+id/exit"
+                android:icon="@drawable/ic_sair"
+                android:title="Sair" />
+
+
+
+        </menu>
+    </item>
+
+
+</menu>
