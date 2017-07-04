@@ -10,10 +10,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.gerdaumanagement.gerdaumanagement.R.id.na;
+import static com.example.gerdaumanagement.gerdaumanagement.R.id.nao;
+import static com.example.gerdaumanagement.gerdaumanagement.R.id.sim;
 
 
 /**
@@ -43,7 +49,7 @@ public class tipoSemestral extends Fragment {
         });
 
 
-        List<AvaliazaoSemestral> semestral = todosSemestral();
+        List<AvaliacaoSemestral> semestral = todosSemestral();
         //ArrayAdapter<AvaliacaoMensal> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, mensal);
 
         //chamada da nossa implementação
@@ -55,40 +61,48 @@ public class tipoSemestral extends Fragment {
         return rootView;
     }
 
-    public List<AvaliazaoSemestral> todosSemestral() {
-        List<AvaliazaoSemestral> dadosSemestral = new ArrayList<AvaliazaoSemestral>();
-        dadosSemestral.add(new AvaliazaoSemestral("A empresa possui PPRA/ PCMSO/ PCMAT?  O plano de ação do PPRA está de acordo com o cronograma?", 'A', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral("Existe avaliação global do PPRA/ PCMSO", 'A', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral("Os exames periodicos estão em dia? (Verificar por amostragem)", 'A', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral("As licenças e documentos dos veículos estão em dia?", 'B', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral("De acordo com os tacógrafos os veículos estão respeitando o limite de velocidade? ( Amostragem)", 'B', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral("Livro de registro de inspeção deve esta disponivel na empresa (frente de trabalho). Os autos que geraram as não conformidades, autos de infração e multas devem ser regularizados / sanados", 'A', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral("A contratada participa das reuniões trimestral com a gerencia?", 'B', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral("Possui alguma ação em atraso do Risco Crítico?", 'A', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral("Fichas de EPI's estão atualizadas?", 'B', "SEGURANÇA - GERAL"));
-        dadosSemestral.add(new AvaliazaoSemestral("A empresa contratada possui PAE e está claro para os colaboradores?", 'B', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral(" A empresa contratada realiza simulados de acidente?", 'B', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral("Os colaboradores estão com treinamento de integração ou reciclagem em dia?", 'B', "Segurança Geral"));
-        dadosSemestral.add(new AvaliazaoSemestral("A reunião de CIPATR foi realizada conforme calendário?", 'B', "Segurança Geral"));
-
-
+    public List<AvaliacaoSemestral> todosSemestral() {
+        List<AvaliacaoSemestral> dadosSemestral = new ArrayList<AvaliacaoSemestral>();
+        dadosSemestral.add(new AvaliacaoSemestral("A empresa possui PPRA/ PCMSO/ PCMAT?  O plano de ação do PPRA está de acordo com o cronograma?", 'A', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral("Existe avaliação global do PPRA/ PCMSO", 'A', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral("Os exames periodicos estão em dia? (Verificar por amostragem)", 'A', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral("As licenças e documentos dos veículos estão em dia?", 'B', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral("De acordo com os tacógrafos os veículos estão respeitando o limite de velocidade? ( Amostragem)", 'B', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral("Livro de registro de inspeção deve esta disponivel na empresa (frente de trabalho). Os autos que geraram as não conformidades, autos de infração e multas devem ser regularizados / sanados", 'A', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral("A contratada participa das reuniões trimestral com a gerencia?", 'B', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral("Possui alguma ação em atraso do Risco Crítico?", 'A', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral("Fichas de EPI's estão atualizadas?", 'B', "SEGURANÇA - GERAL"));
+        dadosSemestral.add(new AvaliacaoSemestral("A empresa contratada possui PAE e está claro para os colaboradores?", 'B', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral(" A empresa contratada realiza simulados de acidente?", 'B', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral("Os colaboradores estão com treinamento de integração ou reciclagem em dia?", 'B', "Segurança Geral"));
+        dadosSemestral.add(new AvaliacaoSemestral("A reunião de CIPATR foi realizada conforme calendário?", 'B', "Segurança Geral"));
 
         // Continuação do código
         return dadosSemestral;
     }
 
-    class AvaliazaoSemestral {
+    class AvaliacaoSemestral {
         private String questao;
         private char potencial;
         private String titulo;
+        boolean[] radioButtonValues = new boolean[3];
 
 
-        public AvaliazaoSemestral(String questao, char potencial, String titulo) {
+        public AvaliacaoSemestral(String questao, char potencial, String titulo) {
             this.questao = questao;
             this.potencial = potencial;
             this.titulo = titulo;
 
         }
+
+        public boolean[] getRadioButtonValues() {
+            return radioButtonValues;
+        }
+
+        public void setRadioButtonValues(boolean[] radioButtonValues) {
+            this.radioButtonValues = radioButtonValues;
+        }
+
 
         public String getQuestao() {
 
@@ -128,10 +142,10 @@ public class tipoSemestral extends Fragment {
 
     class AdapterAmcPersonalizada extends BaseAdapter {
 
-        private final List<AvaliazaoSemestral> semestral;
+        private final List<AvaliacaoSemestral> semestral;
         private final Activity act;
 
-        public AdapterAmcPersonalizada(List<AvaliazaoSemestral> semestral, Activity act) {
+        public AdapterAmcPersonalizada(List<AvaliacaoSemestral> semestral, Activity act) {
             this.semestral = semestral;
             this.act = act;
         }
@@ -154,12 +168,15 @@ public class tipoSemestral extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = act.getLayoutInflater().inflate(R.layout.activity_layout_lista_amc, parent, false);
-            AvaliazaoSemestral semestralAmc = semestral.get(position);
+           final AvaliacaoSemestral semestralAmc = semestral.get(position);
 
             //pegando as referências das Views
             TextView potencial = (TextView) view.findViewById(R.id.potencialLetra);
             TextView questao = (TextView) view.findViewById(R.id.questao);
             TextView titulo = (TextView) view.findViewById(R.id.titulo);
+            RadioButton simButton = (RadioButton) view.findViewById(R.id.sim);
+            RadioButton naoButton = (RadioButton) view.findViewById(R.id.nao);
+            RadioButton naButton = (RadioButton) view.findViewById(R.id.na);
 
             //populando as Views
             potencial.setText(String.valueOf(semestralAmc.getPotencial()));
@@ -167,11 +184,61 @@ public class tipoSemestral extends Fragment {
             titulo.setText(String.valueOf(semestralAmc.getTitulo()));
 
 
+            RadioGroup radioGroupAmc = (RadioGroup) view.findViewById(R.id.radioGroupAmc);
+
+            radioGroupAmc.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                    switch (checkedId) {
+                        case sim:
+                            semestralAmc.radioButtonValues[0] = true;
+                            semestralAmc.radioButtonValues[1] = false;
+                            semestralAmc.radioButtonValues[2] = false;;
+
+                            // trata radioValor1
+                            break;
+                        case nao:
+                            semestralAmc.radioButtonValues[0] = false;
+                            semestralAmc.radioButtonValues[1] = true;
+                            semestralAmc.radioButtonValues[2] = false;
+                            // trata radioValor2
+                            break;
+                        case na:
+                            semestralAmc.radioButtonValues[0] = false;
+                            semestralAmc.radioButtonValues[1] = false;
+                            semestralAmc.radioButtonValues[2] = true;
+                            // trata radioValor3
+                            break;
+                    }
+
+                }
+
+            });
+
+            if( semestralAmc.radioButtonValues[0])
+            {
+                simButton.setChecked(true);
+                naoButton.setChecked(false);
+                naButton.setChecked(false);
+            } else {
+                if(semestralAmc.radioButtonValues[1]){
+                    naoButton.setChecked(true);
+                    simButton.setChecked(false);
+                    naButton.setChecked(false);
+                } else {
+                    if(semestralAmc.radioButtonValues[2]){
+                        naButton.setChecked(true);
+                        simButton.setChecked(false);
+                        naoButton.setChecked(false);
+                    }
+                }
+            }
+
             return view;
         }
 
 
     }
-
 
 }

@@ -22,7 +22,6 @@ public class dataBase extends SQLiteOpenHelper {
     private static final String _ID = "_id";*/
     public static final int VERSAO = 6;
 
-
     public dataBase(Context context) {
 
         super(context, NOME_BANCO, null, VERSAO);
@@ -35,7 +34,8 @@ public class dataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table usuarios(_id integer primary key autoincrement, nome text not null, email text not null, np integer not null, tipoFunc text not null, senha text not null, login text not null);");
-        db.execSQL("cread table amcMensal (_id integer prumary key autoincrement, questao text not null, potencial text nor null, titulo text not null, item text not null, resposta text");
+        db.execSQL("create table amc (_id integer primary key autoincrement,tipo text not null, questao text not null, potencial text not null, titulo text not null, item text not null, resposta text,data date, id_usuario integer not null, FOREIGN KEY (id_usuario) REFERENCES usuarios (_id);");
+        // id_usuario integer not null, FOREIGN KEY(id_usuario) REFERENCES usuarios(_id)");
 
         ContentValues admin = new ContentValues();
         admin.put("nome" , "admin");

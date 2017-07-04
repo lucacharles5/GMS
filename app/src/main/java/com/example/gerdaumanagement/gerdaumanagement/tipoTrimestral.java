@@ -10,10 +10,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.gerdaumanagement.gerdaumanagement.R.id.na;
+import static com.example.gerdaumanagement.gerdaumanagement.R.id.nao;
+import static com.example.gerdaumanagement.gerdaumanagement.R.id.sim;
 
 
 /**
@@ -87,7 +93,7 @@ public class tipoTrimestral extends Fragment {
         private String questao;
         private char potencial;
         private String titulo;
-
+        boolean[] radioButtonValues = new boolean[3];
 
         public AvaliacaoTrimestral(String questao, char potencial, String titulo) {
             this.questao = questao;
@@ -122,6 +128,14 @@ public class tipoTrimestral extends Fragment {
 
         public void setTitulo(String titulo) {
             this.titulo = titulo;
+        }
+
+        public boolean[] getRadioButtonValues() {
+            return radioButtonValues;
+        }
+
+        public void setRadioButtonValues(boolean[] radioButtonValues) {
+            this.radioButtonValues = radioButtonValues;
         }
 
         @Override
@@ -160,17 +174,72 @@ public class tipoTrimestral extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = act.getLayoutInflater().inflate(R.layout.activity_layout_lista_amc, parent, false);
-            AvaliacaoTrimestral trimestralAmc = trimestral.get(position);
+            final AvaliacaoTrimestral trimestralAmc = trimestral.get(position);
 
             //pegando as referências das Views
             TextView potencial = (TextView) view.findViewById(R.id.potencialLetra);
             TextView questao = (TextView) view.findViewById(R.id.questao);
             TextView titulo = (TextView) view.findViewById(R.id.titulo);
+            RadioButton simButton = (RadioButton) view.findViewById(sim);
+            RadioButton naoButton = (RadioButton) view.findViewById(nao);
+            RadioButton naButton = (RadioButton) view.findViewById(na);
 
             //populando as Views
             potencial.setText(String.valueOf(trimestralAmc.getPotencial()));
             questao.setText(String.valueOf(trimestralAmc.getQuestao()));
             titulo.setText(String.valueOf(trimestralAmc.getTitulo()));
+
+            RadioGroup radioGroupAmc = (RadioGroup) view.findViewById(R.id.radioGroupAmc);
+
+            radioGroupAmc.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                    switch (checkedId) {
+                        case sim:
+                            trimestralAmc.radioButtonValues[0] = true;
+                            trimestralAmc.radioButtonValues[1] = false;
+                            trimestralAmc.radioButtonValues[2] = false;;
+
+                            // trata radioValor1
+                            break;
+                        case nao:
+                            trimestralAmc.radioButtonValues[0] = false;
+                            trimestralAmc.radioButtonValues[1] = true;
+                            trimestralAmc.radioButtonValues[2] = false;
+                            // trata radioValor2
+                            break;
+                        case na:
+                            trimestralAmc.radioButtonValues[0] = false;
+                            trimestralAmc.radioButtonValues[1] = false;
+                            trimestralAmc.radioButtonValues[2] = true;
+                            // trata radioValor3
+                            break;
+                    }
+
+                }
+
+            });
+
+            if( trimestralAmc.radioButtonValues[0])
+            {
+                simButton.setChecked(true);
+                naoButton.setChecked(false);
+                naButton.setChecked(false);
+            } else {
+                if(trimestralAmc.radioButtonValues[1]){
+                    naoButton.setChecked(true);
+                    simButton.setChecked(false);
+                    naButton.setChecked(false);
+                } else {
+                    if(trimestralAmc.radioButtonValues[2]){
+                        naButton.setChecked(true);
+                        simButton.setChecked(false);
+                        naoButton.setChecked(false);
+                    }
+                }
+            }
+
 
 
             return view;

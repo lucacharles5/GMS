@@ -168,5 +168,20 @@ public class db_funcao extends adicionar_usuario{
 
     }
 
+    public void inserirAmc (amc amc){
+
+        ContentValues valores = new ContentValues();
+
+        valores.put("tipo", amc.getTipo());
+        valores.put("item", amc.getItem());
+        valores.put("questao", amc.getQuestao());
+        valores.put("potencial", (byte) amc.getPotencial());
+        valores.put("titulo", amc.getTitulo());
+
+
+        db.insert("amc",null, valores);
+
+    }
+
 
 }

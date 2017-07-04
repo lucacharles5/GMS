@@ -68,6 +68,7 @@
             android:layout_alignStart="@+id/questao">
 
         <RadioGroup
+            android:id="@+id/radioGroupAmc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -80,26 +81,28 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
-        <RadioButton
-            android:id="@+id/nao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Não"
-            android:layout_below="@+id/questao"
-            android:layout_toEndOf="@+id/sim"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            />
+            <RadioButton
+                android:id="@+id/nao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/questao"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toEndOf="@+id/sim"
+                android:text="Não" />
 
-        <RadioButton
-            android:id="@+id/na"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NA"
-            android:layout_below="@+id/questao"
-            android:layout_toEndOf="@+id/nao"
-            />
-            </RadioGroup>
+            <RadioButton
+                android:id="@+id/na"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/questao"
+                android:layout_toEndOf="@+id/nao"
+                android:layout_weight="1"
+                android:text="NA" />
+
+        </RadioGroup>
+
+
         </LinearLayout>
 
 
