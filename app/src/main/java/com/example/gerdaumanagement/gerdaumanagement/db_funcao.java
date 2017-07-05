@@ -89,6 +89,30 @@ public class db_funcao extends adicionar_usuario{
         return(list);
     }
 
+
+    public List<String> buscarUsuarios() {
+        List<String> nomes = new ArrayList<String>();
+        String selectQuery = "select nome from usuarios";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            do {
+
+                String nomeString = cursor.getString(cursor.getColumnIndex("nome"));
+
+                StringBuilder conversor = new StringBuilder();
+                conversor.append(nomeString);
+
+                nomes.add(conversor.toString());
+
+            } while (cursor.moveToNext());
+
+        }
+        return nomes;
+    }
+
     public int login(String username,String password)
     {
 
@@ -148,8 +172,6 @@ public class db_funcao extends adicionar_usuario{
 
             String selectQuery = "select tipoFunc from usuarios where login = '" + login + "'";
 
-
-
             Cursor cursor = db.rawQuery(selectQuery, null);
             cursor.moveToFirst();
             String nomeString = cursor.getString(cursor.getColumnIndex("tipoFunc"));
@@ -182,6 +204,8 @@ public class db_funcao extends adicionar_usuario{
         db.insert("amc",null, valores);
 
     }
+
+
 
 
 }

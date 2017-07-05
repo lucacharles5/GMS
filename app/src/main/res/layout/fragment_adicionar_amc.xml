@@ -10,55 +10,86 @@
         android:id="@+id/cadastroAvaliador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/shadow_grey"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
-        <AutoCompleteTextView
+
+        <TextView
+            android:id="@+id/AvaliadorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Avaliador:"
+            android:paddingTop="3dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
             android:id="@+id/colaboradoresAmc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Avaliador"
-            android:imeOptions="actionDone"
-            android:inputType="text">
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/AvaliadorLabel"
+            android:layout_above="@+id/ContratadaLabel">
 
-        </AutoCompleteTextView>
+        </Spinner>
+
+        <TextView
+            android:id="@+id/ContratadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terceira:"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/colaboradoresAmc"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/AvaliadorLabel"
+            android:layout_above="@+id/spinnerTipo" />
 
 
-        <AutoCompleteTextView
+        <Spinner
             android:id="@+id/contratadasAmc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/colaboradoresAmc"
-            android:layout_below="@+id/colaboradoresAmc"
-            android:hint="Contratada"
-            android:imeOptions="actionDone"
-            android:inputType="text">
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/AvaliadorLabel"
+            android:layout_below="@+id/AvaliadorLabel">
 
-        </AutoCompleteTextView>
+        </Spinner>
 
 
         <EditText
             android:id="@+id/dataRealizada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/contratadasAmc"
-            android:layout_below="@+id/contratadasAmc"
             android:clickable="true"
             android:ems="6"
             android:focusableInTouchMode="true"
             android:hint="Data Realizada"
             android:imeOptions="actionDone"
-            android:inputType="date" />
+            android:inputType="date"
+            android:layout_below="@+id/contratadasAmc"
+            android:layout_toEndOf="@+id/spinnerTipo"
+            android:layout_alignBottom="@+id/spinnerTipo" />
 
+        <TextView
+            android:id="@+id/TiposLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipos:"
+            android:textSize="15sp"
+            android:layout_below="@+id/ContratadaLabel"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/contratadasAmc"
+            android:layout_alignBottom="@+id/spinnerTipo" />
         <Spinner
             android:id="@+id/spinnerTipo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/dataRealizada"
-            android:layout_alignTop="@+id/dataRealizada"
-            android:layout_toEndOf="@+id/dataRealizada" />
+            android:layout_below="@+id/contratadasAmc"
+            android:layout_toEndOf="@+id/ContratadaLabel" />
 
     </RelativeLayout>
 
@@ -66,8 +97,8 @@
         android:id="@+id/contentTipo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignEnd="@+id/cadastroAvaliador"
-        android:layout_alignStart="@+id/cadastroAvaliador"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
         android:layout_below="@+id/cadastroAvaliador">
 
     </RelativeLayout>

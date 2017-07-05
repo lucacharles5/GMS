@@ -13,10 +13,12 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -24,11 +26,11 @@ import android.widget.Spinner;
  */
 public class adicionarAmc extends Fragment  {
 
-
-
     public adicionarAmc() {
         // Required empty public constructor
     }
+
+
 
     String[] COLABORADORES = new String[] {"Clever", "Diogo", "Fernando", "Mylena", "Lucas Charles","Lucas Rafael","Ediberto","Eduardo"};
     String[] CONTRATADAS = new String[] {"AGROFUTURA CULTIVO DE EUCALIPTO E COMERCIO LTDA.", "AGROSUL PRODUCAO DE CARVAO LTDA.","AJR EMPREENDIMENTO RURAIS LTDA.",
@@ -41,11 +43,12 @@ public class adicionarAmc extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        db_funcao db = new db_funcao(getActivity());
 
 
         final View rootView = inflater.inflate(R.layout.fragment_adicionar_amc, container, false);
         //COlaborador
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, COLABORADORES);
+      /*  ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, COLABORADORES);
         AutoCompleteTextView textView = (AutoCompleteTextView) rootView.findViewById(R.id.colaboradoresAmc);
         textView.setThreshold(2);
         textView.setAdapter(adapter);
@@ -54,13 +57,53 @@ public class adicionarAmc extends Fragment  {
         ArrayAdapter<String> adapterContra = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, CONTRATADAS);
         AutoCompleteTextView textViewContra = (AutoCompleteTextView) rootView.findViewById(R.id.contratadasAmc);
         textViewContra.setThreshold(1);
-        textViewContra.setAdapter(adapterContra);
+        textViewContra.setAdapter(adapterContra);*/
+
+
+        List<String> listNomes =  new ArrayList<String>();
+        listNomes = db.buscarUsuarios();
+
+        List<String> listContratadas =  new ArrayList<String>();
+        listContratadas.add("AGROFUTURA");
+        listContratadas.add("AGROSUL");
+        listContratadas.add("AJR");
+        listContratadas.add("BELA RODRIGUES");
+        listContratadas.add("CJR TRANSPORTES");
+        listContratadas.add("DEL REY");
+        listContratadas.add("FERREIRA SERVIÇOS");
+        listContratadas.add("GLOBAL ENERGETICA");
+        listContratadas.add("L E LOCAÇAO");
+        listContratadas.add("NG TRANSPORTES");
+        listContratadas.add("MINAS SUL");
+        listContratadas.add("MV TRATORES ");
+        listContratadas.add("NG MJ REFLORESTAMENTO");
+        listContratadas.add("REFLORESTAR");
+        listContratadas.add("REFLORESTAMENTO PIEDADE");
+        listContratadas.add("SANTA CLARA");
+        listContratadas.add("SANTOS ARAUJO");
+        listContratadas.add("TOMBA TERRA");
+        listContratadas.add("UNIAO PRESTAÇAO DE SERIVÇOS FLORSTAIS LTDA.");
+
+
+        Spinner colaboradoresAmc = (Spinner) rootView.findViewById(R.id.colaboradoresAmc);
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),  android.R.layout.simple_spinner_dropdown_item, listNomes);
+        ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        colaboradoresAmc.setAdapter(spinnerArrayAdapter);
+
+        Spinner contratadasAmc = (Spinner) rootView.findViewById(R.id.contratadasAmc);
+
+        arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, listContratadas);
+        spinnerArrayAdapter = arrayAdapter;
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        contratadasAmc.setAdapter(spinnerArrayAdapter);
 
         //TiPOS
-        Spinner spinner = (Spinner) rootView.findViewById(R.id.spinnerTipo);
-        ArrayAdapter<CharSequence> adapterTipos = ArrayAdapter.createFromResource(getActivity(), R.array.tipos, android.R.layout.select_dialog_item);
+        Spinner spinnerTipo = (Spinner) rootView.findViewById(R.id.spinnerTipo);
+        ArrayAdapter<CharSequence> adapterTipos = ArrayAdapter.createFromResource(getActivity(), R.array.tipos, android.R.layout.simple_list_item_1);
         adapterTipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapterTipos);
+        spinnerTipo.setAdapter(adapterTipos);
 
         final EditText dataRealizada = (EditText) rootView.findViewById(R.id.dataRealizada);
         dataRealizada.addTextChangedListener(Mask.insert("##/##/####", dataRealizada));
@@ -73,10 +116,8 @@ public class adicionarAmc extends Fragment  {
             }
         });
 
-
-
         //Método do Spinner para capturar o item selecionado
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
