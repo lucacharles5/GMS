@@ -16,28 +16,36 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.gerdaumanagement.gerdaumanagement.R.id.dataRealizada;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class adicionarAmc extends Fragment  {
+public class adicionarAmc extends Fragment {
+    private amc amcFeita = new amc();
+    private Spinner nomeS;
+    private Spinner contratadaS;
+    private Spinner tipoS;
+    private EditText data;
+    private View rootviewSalva;
 
     public adicionarAmc() {
         // Required empty public constructor
     }
 
-
-
-    String[] COLABORADORES = new String[] {"Clever", "Diogo", "Fernando", "Mylena", "Lucas Charles","Lucas Rafael","Ediberto","Eduardo"};
-    String[] CONTRATADAS = new String[] {"AGROFUTURA CULTIVO DE EUCALIPTO E COMERCIO LTDA.", "AGROSUL PRODUCAO DE CARVAO LTDA.","AJR EMPREENDIMENTO RURAIS LTDA.",
+    String[] COLABORADORES = new String[]{"Clever", "Diogo", "Fernando", "Mylena", "Lucas Charles", "Lucas Rafael", "Ediberto", "Eduardo"};
+    String[] CONTRATADAS = new String[]{"AGROFUTURA CULTIVO DE EUCALIPTO E COMERCIO LTDA.", "AGROSUL PRODUCAO DE CARVAO LTDA.", "AJR EMPREENDIMENTO RURAIS LTDA.",
             "BELA RODRIGUES LTDA.", "CJR TRANSPORTES IMPORTAÇAO E EXPOR. LTDA.", "DEL REY REFLORESTAMENTO LTDA.", "FERREIRA SERVIÇOS FLORESTAIS LTDA.",
-    "GLOBAL ENERGETICA LTDA.", "INVENTAR GMB CONSULTORIA LTDA.", "L E LOCAÇAO DE MAQ EQUIP LTDA.TRANSROCHA", "NG TRANSPORTES", "MINAS SUL FLORESTAL LTDA EPP", "MJ REFLORESTAMENTO LTDA ME",
-    "MV TRATORES E SERVIÇOS LTDA", "REFLORESTAR SERVIÇOS FLORESTAIS LTDA.", "REFLORESTAMENTO PIEDADE LTDA","SANTA CLARA SERVICOS FLORESTAIS LTD","SANTOS ARAUJO  SERVIÇOS FLORESTAIS LTDA.",
-    "TOMBA TERRA", "UNIAO PRESTAÇAO DE SERIVÇOS FLORSTAIS LTDA."};
+            "GLOBAL ENERGETICA LTDA.", "INVENTAR GMB CONSULTORIA LTDA.", "L E LOCAÇAO DE MAQ EQUIP LTDA.TRANSROCHA", "NG TRANSPORTES", "MINAS SUL FLORESTAL LTDA EPP", "MJ REFLORESTAMENTO LTDA ME",
+            "MV TRATORES E SERVIÇOS LTDA", "REFLORESTAR SERVIÇOS FLORESTAIS LTDA.", "REFLORESTAMENTO PIEDADE LTDA", "SANTA CLARA SERVICOS FLORESTAIS LTD", "SANTOS ARAUJO  SERVIÇOS FLORESTAIS LTDA.",
+            "TOMBA TERRA", "UNIAO PRESTAÇAO DE SERIVÇOS FLORSTAIS LTDA."};
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,23 +55,11 @@ public class adicionarAmc extends Fragment  {
 
 
         final View rootView = inflater.inflate(R.layout.fragment_adicionar_amc, container, false);
-        //COlaborador
-      /*  ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, COLABORADORES);
-        AutoCompleteTextView textView = (AutoCompleteTextView) rootView.findViewById(R.id.colaboradoresAmc);
-        textView.setThreshold(2);
-        textView.setAdapter(adapter);
 
-        //contratadas
-        ArrayAdapter<String> adapterContra = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, CONTRATADAS);
-        AutoCompleteTextView textViewContra = (AutoCompleteTextView) rootView.findViewById(R.id.contratadasAmc);
-        textViewContra.setThreshold(1);
-        textViewContra.setAdapter(adapterContra);*/
-
-
-        List<String> listNomes =  new ArrayList<String>();
+        List<String> listNomes = new ArrayList<String>();
         listNomes = db.buscarUsuarios();
 
-        List<String> listContratadas =  new ArrayList<String>();
+        List<String> listContratadas = new ArrayList<String>();
         listContratadas.add("AGROFUTURA");
         listContratadas.add("AGROSUL");
         listContratadas.add("AJR");
@@ -85,30 +81,30 @@ public class adicionarAmc extends Fragment  {
         listContratadas.add("UNIAO PRESTAÇAO DE SERIVÇOS FLORSTAIS LTDA.");
 
 
-        Spinner colaboradoresAmc = (Spinner) rootView.findViewById(R.id.colaboradoresAmc);
+        nomeS = (Spinner) rootView.findViewById(R.id.colaboradoresAmc);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),  android.R.layout.simple_spinner_dropdown_item, listNomes);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, listNomes);
         ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        colaboradoresAmc.setAdapter(spinnerArrayAdapter);
+        nomeS.setAdapter(spinnerArrayAdapter);
 
-        Spinner contratadasAmc = (Spinner) rootView.findViewById(R.id.contratadasAmc);
+        contratadaS = (Spinner) rootView.findViewById(R.id.contratadasAmc);
 
         arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, listContratadas);
         spinnerArrayAdapter = arrayAdapter;
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        contratadasAmc.setAdapter(spinnerArrayAdapter);
+        contratadaS.setAdapter(spinnerArrayAdapter);
 
         //TiPOS
-        Spinner spinnerTipo = (Spinner) rootView.findViewById(R.id.spinnerTipo);
+        tipoS = (Spinner) rootView.findViewById(R.id.spinnerTipo);
         ArrayAdapter<CharSequence> adapterTipos = ArrayAdapter.createFromResource(getActivity(), R.array.tipos, android.R.layout.simple_list_item_1);
         adapterTipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTipo.setAdapter(adapterTipos);
+        tipoS.setAdapter(adapterTipos);
 
-        final EditText dataRealizada = (EditText) rootView.findViewById(R.id.dataRealizada);
-        dataRealizada.addTextChangedListener(Mask.insert("##/##/####", dataRealizada));
+        data = (EditText) rootView.findViewById(dataRealizada);
+        data.addTextChangedListener(Mask.insert("##/##/####", data));
 
-            RelativeLayout contentTipo = (RelativeLayout) rootView.findViewById(R.id.contentTipo);
+        RelativeLayout contentTipo = (RelativeLayout) rootView.findViewById(R.id.contentTipo);
         contentTipo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,7 +113,7 @@ public class adicionarAmc extends Fragment  {
         });
 
         //Método do Spinner para capturar o item selecionado
-        spinnerTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        tipoS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
@@ -129,19 +125,20 @@ public class adicionarAmc extends Fragment  {
 
                     tipoMensal tipoMensal = new tipoMensal();
                     FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().replace(R.id.contentTipo,tipoMensal, tipoMensal.getTag()).addToBackStack(null).commit();
+                    manager.beginTransaction().replace(R.id.contentTipo, tipoMensal, tipoMensal.getTag()).addToBackStack(null).commit();
 
-                }if (nome.equals("Semestral")) {
+                }
+                if (nome.equals("Semestral")) {
                     tipoSemestral tipoSemestral = new tipoSemestral();
                     FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().replace(R.id.contentTipo,tipoSemestral, tipoSemestral.getTag()).addToBackStack(null).commit();
+                    manager.beginTransaction().replace(R.id.contentTipo, tipoSemestral, tipoSemestral.getTag()).addToBackStack(null).commit();
 
-                }if (nome.equals("Trimestral")) {
+                }
+                if (nome.equals("Trimestral")) {
 
                     tipoTrimestral tipoTrimestral = new tipoTrimestral();
                     FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().replace(R.id.contentTipo,tipoTrimestral, tipoTrimestral.getTag()).addToBackStack(null).commit();
-
+                    manager.beginTransaction().replace(R.id.contentTipo, tipoTrimestral, tipoTrimestral.getTag()).addToBackStack(null).commit();
 
                 }
             }
@@ -150,11 +147,22 @@ public class adicionarAmc extends Fragment  {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
+
+
         });
 
+
+       /* nomeS = (Spinner) rootView.findViewById(R.id.colaboradoresAmc);
+        contratadaS = (Spinner) rootView.findViewById(R.id.contratadasAmc);
+        tipoS = (Spinner) rootView.findViewById(R.id.spinnerTipo);
+        data = (EditText)rootView.findViewById(R.id.dataRealizada);*/
+
+
+        rootviewSalva = rootView;
         return rootView;
 
     }
+
 
     //esconder teclado
     private void hideSoftKeyboard(Activity activity) {
@@ -166,18 +174,21 @@ public class adicionarAmc extends Fragment  {
         }
     }
 
+
     public abstract static class Mask {
+
         public static String unmask(String s) {
             return s.replaceAll("[.]", "").replaceAll("[-]", "")
                     .replaceAll("[/]", "").replaceAll("[(]", "")
                     .replaceAll("[)]", "");
         }
 
-        public  static TextWatcher insert(final String mask, final EditText ediTxt) {
+        public static TextWatcher insert(final String mask, final EditText ediTxt) {
             return new TextWatcher() {
                 boolean isUpdating;
                 String old = "";
-                public void onTextChanged(CharSequence s, int start, int before,int count) {
+
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
                     String str = Mask.unmask(s.toString());
                     String mascara = "";
                     if (isUpdating) {
@@ -202,14 +213,32 @@ public class adicionarAmc extends Fragment  {
                     ediTxt.setText(mascara);
                     ediTxt.setSelection(mascara.length());
                 }
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-                public void afterTextChanged(Editable s) {}
+
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                public void afterTextChanged(Editable s) {
+                }
             };
         }
-
 
     }
 
 
+    public void salvarRespostas(ArrayList<Integer> respostas) {
+
+        amcFeita.respostas = respostas;
+        amcFeita.setNome(nomeS.toString());
+        amcFeita.setTipo(tipoS.toString());
+        amcFeita.setTerceira(contratadaS.toString());
+        amcFeita.setData(data.getText().toString());
+
+        db_funcao db = new db_funcao(getContext());
+        db.inserirAmc(amcFeita);
+
+        Toast.makeText(getActivity(), "AMC inserida com sucesso!", Toast.LENGTH_SHORT).show();
+
+
+    }
 
 }

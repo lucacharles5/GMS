@@ -10,22 +10,22 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-
-import static com.example.gerdaumanagement.gerdaumanagement.R.id.na;
-import static com.example.gerdaumanagement.gerdaumanagement.R.id.nao;
-import static com.example.gerdaumanagement.gerdaumanagement.R.id.sim;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class tipoMensal extends Fragment {
+
+   private amc amc = new amc();
+
+    private adicionarAmc addamc = new adicionarAmc();
 
 
     public tipoMensal() {
@@ -43,15 +43,22 @@ public class tipoMensal extends Fragment {
         btnFooter.setBackgroundResource(R.drawable.gradiente_azul_semconor);
         btnFooter.setTextColor(getResources().getColor(R.color.cinza));
 
-        btnFooter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-        /*[...]*/
-            }
-        });
 
 
         List<AvaliacaoMensal> mensal = todosMensal();
         //ArrayAdapter<AvaliacaoMensal> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, mensal);
+
+        btnFooter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Iterator it = amc.respostas.iterator();
+                while (it.hasNext()) {
+                    System.out.println("AQUIIIIIIIIIIIIIIIIIIII" + it.next());
+                }
+
+                addamc.salvarRespostas(amc.respostas);
+
+            }
+        });
 
         //chamada da nossa implementação
         AdapterAmcPersonalizada adapter = new AdapterAmcPersonalizada(mensal, getActivity());
@@ -111,14 +118,10 @@ public class tipoMensal extends Fragment {
         private final List<AvaliacaoMensal> mensal;
         private final Activity act;
 
-        private AvaliacaoMensal flag;
-
 
         public AdapterAmcPersonalizada(List<AvaliacaoMensal> mensal, Activity act) {
             this.mensal = mensal;
             this.act = act;
-
-
         }
 
 
@@ -138,7 +141,7 @@ public class tipoMensal extends Fragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             View view = act.getLayoutInflater().inflate(R.layout.activity_layout_lista_amc, parent, false);
 
             final AvaliacaoMensal mensalAmc = mensal.get(position);
@@ -147,9 +150,7 @@ public class tipoMensal extends Fragment {
             TextView potencial = (TextView) view.findViewById(R.id.potencialLetra);
             TextView questao = (TextView) view.findViewById(R.id.questao);
             TextView titulo = (TextView) view.findViewById(R.id.titulo);
-            RadioButton simButton = (RadioButton) view.findViewById(R.id.sim);
-            RadioButton naoButton = (RadioButton) view.findViewById(R.id.nao);
-            RadioButton naButton = (RadioButton) view.findViewById(R.id.na);
+
 
             //populando as Views
             potencial.setText(String.valueOf(mensalAmc.getPotencial()));
@@ -158,56 +159,30 @@ public class tipoMensal extends Fragment {
 
             RadioGroup radioGroupAmc = (RadioGroup) view.findViewById(R.id.radioGroupAmc);
 
+            radioGroupAmc.check(mensalAmc.getSelectedRadioButtonId());
+
             radioGroupAmc.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                    switch (checkedId) {
-                        case sim:
-                            mensalAmc.radioButtonValues[0] = true;
-                            mensalAmc.radioButtonValues[1] = false;
-                            mensalAmc.radioButtonValues[2] = false;;
-
-                            // trata radioValor1
-                            break;
-                        case nao:
-                            mensalAmc.radioButtonValues[0] = false;
-                            mensalAmc.radioButtonValues[1] = true;
-                            mensalAmc.radioButtonValues[2] = false;
-                            // trata radioValor2
-                            break;
-                        case na:
-                            mensalAmc.radioButtonValues[0] = false;
-                            mensalAmc.radioButtonValues[1] = false;
-                            mensalAmc.radioButtonValues[2] = true;
-                            // trata radioValor3
-                            break;
+                    if(mensalAmc.selectedRadioButtonId == 0){
+                        amc.respostas.add(checkedId);
+                    }else{
+                        amc.respostas.remove(position);
+                        amc.respostas.add(position,checkedId);
                     }
+
+                    mensalAmc.setSelectedRadioButtonId(checkedId);
 
                 }
 
             });
 
-            if( mensalAmc.radioButtonValues[0])
-            {
-                simButton.setChecked(true);
-                naoButton.setChecked(false);
-                naButton.setChecked(false);
-            } else {
-                if(mensalAmc.radioButtonValues[1]){
-                    naoButton.setChecked(true);
-                    simButton.setChecked(false);
-                    naButton.setChecked(false);
-                } else {
-                    if(mensalAmc.radioButtonValues[2]){
-                        naButton.setChecked(true);
-                        simButton.setChecked(false);
-                        naoButton.setChecked(false);
-                    }
-                }
-            }
+
+
             return view;
         }
+
 
     }
 
@@ -216,8 +191,14 @@ public class tipoMensal extends Fragment {
         private String questao;
         private char potencial;
         private String titulo;
-        boolean[] radioButtonValues = new boolean[3];
+        private int selectedRadioButtonId;
 
+        public int getSelectedRadioButtonId(){
+            return selectedRadioButtonId;
+        }
+        public void setSelectedRadioButtonId(int radioButtonId){
+            selectedRadioButtonId = radioButtonId;
+        }
 
         public AvaliacaoMensal(String questao, char potencial, String titulo) {
             this.questao = questao;
@@ -254,13 +235,6 @@ public class tipoMensal extends Fragment {
             this.titulo = titulo;
         }
 
-        public boolean[] getRadioButtonValues() {
-            return radioButtonValues;
-        }
-
-        public void setRadioButtonValues(boolean[] radioButtonValues) {
-            this.radioButtonValues = radioButtonValues;
-        }
 
         @Override
         public String toString() {

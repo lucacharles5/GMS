@@ -130,7 +130,7 @@ public class adicionar_usuario extends usuario {
                 usuario.setNp(np);
                 usuario.setLogin(login);
 
-               nomeEt.setText(nome);
+                nomeEt.setText(nome);
                 emailEt.setText(email);
                 npEt.setText(np);
                 //tipoFuncSp.toString();
@@ -145,12 +145,7 @@ public class adicionar_usuario extends usuario {
             }
         }
 
-
-
-
        // confirmarSenhaEt = (EditText) rootView.findViewById(confirmarSenha);
-
-
 
         getActivity().getFragmentManager().popBackStack();
 
@@ -162,8 +157,6 @@ public class adicionar_usuario extends usuario {
                 editarUsuario(v);
             }
         });
-
-
 
         return rootView;
 
@@ -221,6 +214,7 @@ public class adicionar_usuario extends usuario {
     }
 
     public void editarUsuario(View view){
+
         usuario.setNome(nomeEt.getText().toString());
         usuario.setEmail(emailEt.getText().toString());
         usuario.setNp(npEt.getText().toString());

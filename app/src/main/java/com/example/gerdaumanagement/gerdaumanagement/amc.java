@@ -1,20 +1,46 @@
 package com.example.gerdaumanagement.gerdaumanagement;
 
-import java.util.Date;
+import java.util.ArrayList;
 
 /**
  * Created by Lucas on 29/06/2017.
  */
 
 public class amc {
+
     public int id;
+    private String nome;
+    private String terceira;
     public String tipo;
-    public String item;
-    public String questao;
-    public char potencial;
-    public String titulo;
-    public Date data;
-    public String resposta;
+    public String data;
+    public String resultado;
+    ArrayList<Integer> respostas = new ArrayList<>();
+
+
+    public ArrayList<Integer> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(ArrayList<Integer> respostas) {
+        this.respostas = respostas;
+    }
+
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTerceira() {
+        return terceira;
+    }
+
+    public void setTerceira(String terceira) {
+        this.terceira = terceira;
+    }
 
     public int getId() {
         return id;
@@ -24,50 +50,14 @@ public class amc {
         this.id = id;
     }
 
-    public String getItem() {
-        return item;
+    public String getResultado() {
+        return resultado;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void getResultado(String resposta) {
+        this.resultado = resposta;
     }
 
-    public String getResposta() {
-        return resposta;
-    }
-
-    public void setResposta(String resposta) {
-        this.resposta = resposta;
-    }
-
-
-    public String getQuestao() {
-
-        return questao;
-    }
-
-    public void setQuestao(String questao) {
-
-        this.questao = questao;
-    }
-
-    public char getPotencial() {
-
-        return potencial;
-    }
-
-    public void setPotencial(char potencial) {
-
-        this.potencial = potencial;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
 
     public String getTipo() {
         return tipo;
@@ -77,18 +67,18 @@ public class amc {
         this.tipo = tipo;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
     @Override
     public String toString() {
-        return "Questao: " + questao + " Potencial: " +
-                potencial + "Titulo: " + titulo + "Resposta: " + resposta + "Item: " + item + "Tipo: " + tipo;
+        return "Nome: " + nome + " Terceira : " +
+                terceira + "Tipo: " + tipo + "Data: " + data;
     }
 
 }
