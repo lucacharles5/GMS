@@ -89,10 +89,11 @@ public class adicionar_usuario extends usuario {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
+
         });
 
 
-// Inflate the layout for this fragment
+        // Inflate the layout for this fragment
         nomeEt = (EditText) rootView.findViewById(nome);
         emailEt = (EditText) rootView.findViewById(email);
         npEt = (EditText) rootView.findViewById(np);
@@ -106,6 +107,7 @@ public class adicionar_usuario extends usuario {
         if(intent != null){
             if(getArguments() != null){
                 ((MenuDrawer) getActivity()).setActionBarTitle("Editar Usuário");
+
                 getArguments().getString("nome", "");
                 getArguments().getString("email", "");
                 getArguments().getString("senha", "");
@@ -129,7 +131,6 @@ public class adicionar_usuario extends usuario {
                 usuario.setTipoFunc(tipoFunc);
                 usuario.setNp(np);
                 usuario.setLogin(login);
-
                 nomeEt.setText(nome);
                 emailEt.setText(email);
                 npEt.setText(np);

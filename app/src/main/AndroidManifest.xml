@@ -41,7 +41,7 @@
             android:name=".content_menu_drawer"
             android:screenOrientation="portrait" />
         <activity android:name=".layoutListaAMC" />
-        <activity android:name=".layoutUsuario"></activity>
+        <activity android:name=".layoutUsuario" />
     </application>
 
 </manifest>

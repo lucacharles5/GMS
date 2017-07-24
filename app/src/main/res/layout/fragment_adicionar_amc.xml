@@ -11,9 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shadow_grey"
-        android:paddingBottom="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:padding="10dp"
+        android:layout_marginTop="150dp">
 
 
         <TextView
@@ -24,7 +23,8 @@
             android:paddingTop="3dp"
             android:textSize="15sp"
             android:gravity="center"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            />
 
         <Spinner
             android:id="@+id/colaboradoresAmc"
@@ -93,14 +93,20 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/contentTipo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/cadastroAvaliador">
 
-    </RelativeLayout>
+    <Button
+        android:id="@+id/preencherAmc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="59dp"
+        android:text="Preencher AMC"
+        android:layout_below="@+id/cadastroAvaliador"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/gradiente_azul"
+        android:textColor="@color/cinza"
+        android:padding="15dp"/>
+
+
+
 
 </RelativeLayout>

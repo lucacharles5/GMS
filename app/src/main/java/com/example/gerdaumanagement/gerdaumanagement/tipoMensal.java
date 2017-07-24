@@ -2,6 +2,7 @@ package com.example.gerdaumanagement.gerdaumanagement;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,11 +23,10 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class tipoMensal extends Fragment {
+public class tipoMensal extends Fragment  {
 
-   private amc amc = new amc();
+    private amc amc = new amc();
 
-    private adicionarAmc addamc = new adicionarAmc();
 
 
     public tipoMensal() {
@@ -35,13 +36,39 @@ public class tipoMensal extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_tipo_mensal, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_tipo_mensal, container, false);
         ListView listaMensal = (ListView) rootView.findViewById(R.id.lista);
 
         Button btnFooter = new Button(getActivity());
         btnFooter.setText("ENVIAR");
         btnFooter.setBackgroundResource(R.drawable.gradiente_azul_semconor);
         btnFooter.setTextColor(getResources().getColor(R.color.cinza));
+
+       Intent intent = getActivity().getIntent();
+        if(intent != null){
+            if(getArguments() != null){
+
+                getArguments().getString("nome", "");
+                getArguments().getString("contratada", "");
+                getArguments().getString("tipo", "");
+                getArguments().getString("data", "");
+                getArguments().getInt("id", 0);
+
+                int id = getArguments().getInt("id");
+                String nomeSalvar = getArguments().getString("nome");
+                String contratadasSalvar = getArguments().getString("contratada");
+                String dataSalvar = getArguments().getString("data");
+                String tipoSalvar = getArguments().getString("tipo");
+
+                amc.setId(id);
+                amc.setNome(nomeSalvar);
+                amc.setContratada(contratadasSalvar);
+                amc.setTipo(tipoSalvar);
+                amc.setData(dataSalvar);
+
+            }
+        }
+
 
 
 
@@ -55,7 +82,9 @@ public class tipoMensal extends Fragment {
                     System.out.println("AQUIIIIIIIIIIIIIIIIIIII" + it.next());
                 }
 
-                addamc.salvarRespostas(amc.respostas);
+               salvarAmc(rootView);
+
+
 
             }
         });
@@ -68,6 +97,7 @@ public class tipoMensal extends Fragment {
 
         return rootView;
     }
+
 
     public List<AvaliacaoMensal> todosMensal() {
         List<AvaliacaoMensal> dados = new ArrayList<AvaliacaoMensal>();
@@ -185,6 +215,24 @@ public class tipoMensal extends Fragment {
 
 
     }
+
+
+    public void salvarAmc(View view){
+
+       String salvarString = null;
+        for(int i = 0; i < amc.respostas.size();i++){
+            salvarString = salvarString +","+ amc.respostas.get(i);
+        }
+
+        amc.setRespostasString(salvarString);
+
+        db_funcao bd = new db_funcao(getContext());
+        bd.inserirAmc(amc);
+
+      Toast.makeText(getActivity(), "AMC inserido com sucesso!", Toast.LENGTH_SHORT).show();
+
+    }
+
 
 
     class AvaliacaoMensal {

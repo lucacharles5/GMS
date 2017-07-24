@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow_grey"
+    android:paddingLeft="15dp"
+    android:paddingBottom="15dp"
+    android:paddingTop="10dp">
+
+
+    <TextView
+        android:id="@+id/contratada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bela Rodrigues"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="true"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/contratada"
+        android:layout_marginTop="10dp"
+        android:text="Nome:"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/contNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lucas Charles de Oliveira"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:maxLength="18"
+        android:paddingLeft="8dp"
+        android:layout_alignBaseline="@+id/nome"
+        android:layout_alignBottom="@+id/nome"
+        android:layout_toEndOf="@+id/nome" />
+    <TextView
+        android:id="@+id/tipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nome"
+        android:layout_marginTop="10dp"
+        android:text="Tipo:"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/contTipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mensal"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:maxLength="18"
+        android:paddingLeft="8dp"
+        android:layout_alignBaseline="@+id/tipo"
+        android:layout_alignBottom="@+id/tipo"
+        android:layout_toEndOf="@+id/tipo" />
+
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data:"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:layout_alignBaseline="@+id/nome"
+        android:layout_alignBottom="@+id/nome"
+        android:layout_alignEnd="@+id/contratada"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/contData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="05/05/2017"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:maxLength="18"
+        android:paddingLeft="8dp"
+        android:layout_alignBaseline="@+id/data"
+        android:layout_alignBottom="@+id/data"
+        android:layout_toEndOf="@+id/data" />
+
+    <TextView
+        android:id="@+id/resultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rsultado:"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:layout_alignBaseline="@+id/tipo"
+        android:layout_alignBottom="@+id/tipo"
+        android:layout_alignStart="@+id/data"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/contResultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100%"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:maxLength="18"
+        android:paddingLeft="8dp"
+        android:layout_alignBaseline="@+id/resultado"
+        android:layout_alignBottom="@+id/resultado"
+        android:layout_toEndOf="@+id/resultado" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/tipo"
+        android:weightSum="1"
+        android:layout_alignEnd="@+id/contData"
+        android:gravity="end"
+        android:layout_alignStart="@+id/resultado">
+
+    <ImageView
+        android:id="@+id/report"
+        app:srcCompat="@drawable/ic_report"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentStart="true"
+        android:layout_weight="0.5"/>
+
+        <ImageView
+            android:id="@+id/ver"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:srcCompat="@drawable/visibilidade"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -177,19 +177,44 @@ public class db_funcao extends adicionar_usuario {
 
     }
 
-
     public void inserirAmc(amc dadosAmc) {
 
         ContentValues valores = new ContentValues();
 
-        //valores.put("amc", dadosAmc.getNome());
+        valores.put("nome", dadosAmc.getNome());
         valores.put("tipo", dadosAmc.getTipo());
         valores.put("data", dadosAmc.getData());
-        valores.put("contratada", dadosAmc.getTerceira());
-        valores.put("resultado", dadosAmc.getTerceira());
+        valores.put("contratada", dadosAmc.getContratada());
+        valores.put("respostas", dadosAmc.getRespostasString());
+        valores.put("resultado", dadosAmc.getResultado());
 
         db.insert("amc", null, valores);
     }
 
+    public List<amc> buscarAmc() {
 
+        List<amc> list = new ArrayList<>();
+        //String[] colunas = new String[]{"_id","nome","email","np","tipoFunc"};
+
+        Cursor cursor = db.query("amc", null, null, null, null, null, null);
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            do {
+
+                amc u = new amc();
+                u.setId(cursor.getInt(0));
+                u.setNome(cursor.getString(1));
+                u.setContratada(cursor.getString(2));
+                u.setTipo(cursor.getString(3));
+                u.setData(cursor.getString(4));
+                u.setRespostasString(cursor.getString(5));
+                list.add(u);
+
+            } while (cursor.moveToNext());
+        }
+
+        return (list);
+    }
 }

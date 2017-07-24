@@ -10,11 +10,20 @@ public class amc {
 
     public int id;
     private String nome;
-    private String terceira;
+    private String contratada;
     public String tipo;
     public String data;
     public String resultado;
     ArrayList<Integer> respostas = new ArrayList<>();
+    public String respostasString;
+
+    public String getRespostasString() {
+        return respostasString;
+    }
+
+    public void setRespostasString(String respostasString) {
+        this.respostasString = respostasString;
+    }
 
 
     public ArrayList<Integer> getRespostas() {
@@ -34,12 +43,12 @@ public class amc {
         this.nome = nome;
     }
 
-    public String getTerceira() {
-        return terceira;
+    public String getContratada() {
+        return contratada;
     }
 
-    public void setTerceira(String terceira) {
-        this.terceira = terceira;
+    public void setContratada(String terceira) {
+        this.contratada = terceira;
     }
 
     public int getId() {
@@ -54,8 +63,8 @@ public class amc {
         return resultado;
     }
 
-    public void getResultado(String resposta) {
-        this.resultado = resposta;
+    public void getResultado(String resultado) {
+        this.resultado = resultado;
     }
 
 
@@ -77,8 +86,8 @@ public class amc {
 
     @Override
     public String toString() {
-        return "Nome: " + nome + " Terceira : " +
-                terceira + "Tipo: " + tipo + "Data: " + data;
+        return "Nome: " + nome + " Contratada : " +
+                contratada + "Tipo: " + tipo + "Data: " + data;
     }
 
 }

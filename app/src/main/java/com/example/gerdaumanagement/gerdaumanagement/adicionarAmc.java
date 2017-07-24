@@ -11,12 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +25,12 @@ import static com.example.gerdaumanagement.gerdaumanagement.R.id.dataRealizada;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class adicionarAmc extends Fragment {
+public class adicionarAmc extends Fragment  {
     private amc amcFeita = new amc();
     private Spinner nomeS;
     private Spinner contratadaS;
     private Spinner tipoS;
-    private EditText data;
-    private View rootviewSalva;
+    private EditText dataS;
 
     public adicionarAmc() {
         // Required empty public constructor
@@ -50,6 +47,8 @@ public class adicionarAmc extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        ((MenuDrawer) getActivity()).setActionBarTitle("AMC");
 
         db_funcao db = new db_funcao(getActivity());
 
@@ -101,65 +100,59 @@ public class adicionarAmc extends Fragment {
         adapterTipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipoS.setAdapter(adapterTipos);
 
-        data = (EditText) rootView.findViewById(dataRealizada);
-        data.addTextChangedListener(Mask.insert("##/##/####", data));
+        dataS = (EditText) rootView.findViewById(dataRealizada);
+        dataS.addTextChangedListener(Mask.insert("##/##/####", dataS));
 
-        RelativeLayout contentTipo = (RelativeLayout) rootView.findViewById(R.id.contentTipo);
-        contentTipo.setOnClickListener(new View.OnClickListener() {
+        Button selecao = (Button) rootView.findViewById(R.id.preencherAmc);
+        selecao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hideSoftKeyboard(getActivity());
+
+                preencherAMC(nomeS, contratadaS,tipoS,dataS);
             }
         });
 
-        //Método do Spinner para capturar o item selecionado
-        tipoS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
-                //pega nome pela posição
-                String nome = parent.getItemAtPosition(posicao).toString();
-                //imprime um Toast na tela com o nome que foi selecionado
-
-                if (nome.equals("Mensal")) {
-
-                    tipoMensal tipoMensal = new tipoMensal();
-                    FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().replace(R.id.contentTipo, tipoMensal, tipoMensal.getTag()).addToBackStack(null).commit();
-
-                }
-                if (nome.equals("Semestral")) {
-                    tipoSemestral tipoSemestral = new tipoSemestral();
-                    FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().replace(R.id.contentTipo, tipoSemestral, tipoSemestral.getTag()).addToBackStack(null).commit();
-
-                }
-                if (nome.equals("Trimestral")) {
-
-                    tipoTrimestral tipoTrimestral = new tipoTrimestral();
-                    FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().replace(R.id.contentTipo, tipoTrimestral, tipoTrimestral.getTag()).addToBackStack(null).commit();
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-
-
-        });
-
-
-       /* nomeS = (Spinner) rootView.findViewById(R.id.colaboradoresAmc);
-        contratadaS = (Spinner) rootView.findViewById(R.id.contratadasAmc);
-        tipoS = (Spinner) rootView.findViewById(R.id.spinnerTipo);
-        data = (EditText)rootView.findViewById(R.id.dataRealizada);*/
-
-
-        rootviewSalva = rootView;
         return rootView;
+
+    }
+
+    public void preencherAMC(Spinner nomeS, Spinner contratadaS, Spinner tipoS, EditText dataS){
+
+        Bundle data = new Bundle();
+        data.putString("nome",nomeS.getSelectedItem().toString());
+        data.putString("contratada", contratadaS.getSelectedItem().toString());
+        data.putString("tipo", tipoS.getSelectedItem().toString());
+        data.putString("data",dataS.getText().toString());
+
+        if(tipoS.getSelectedItem().toString().equals("Mensal")){
+            ((MenuDrawer) getActivity()).setActionBarTitle("AMC Mensal");
+            tipoMensal tipoMensal = new tipoMensal();
+            tipoMensal.setArguments(data);
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction().replace(R.id.content, tipoMensal, tipoMensal.getTag()).addToBackStack(null).commit();
+
+        }else{
+            if(tipoS.getSelectedItem().toString().equals("Semestral")){
+                ((MenuDrawer) getActivity()).setActionBarTitle("AMC Semestral");
+                tipoSemestral tipoSemestral = new tipoSemestral();
+                tipoSemestral.setArguments(data);
+                FragmentManager manager = getFragmentManager();
+                manager.beginTransaction().replace(R.id.content, tipoSemestral, tipoSemestral.getTag()).addToBackStack(null).commit();
+
+            }else{
+                if(tipoS.getSelectedItem().toString().equals("Trimestral")){
+                    ((MenuDrawer) getActivity()).setActionBarTitle("AMC Trimestral");
+                    tipoTrimestral tipoTrimestral = new tipoTrimestral();
+                    tipoTrimestral.setArguments(data);
+                    FragmentManager manager = getFragmentManager();
+                    manager.beginTransaction().replace(R.id.content, tipoTrimestral, tipoTrimestral.getTag()).addToBackStack(null).commit();
+
+
+                }
+            }
+        }
+
 
     }
 
@@ -225,7 +218,11 @@ public class adicionarAmc extends Fragment {
     }
 
 
-    public void salvarRespostas(ArrayList<Integer> respostas) {
+
+
+
+
+    /*public void salvarRespostas(ArrayList<Integer> respostas) {
 
         amcFeita.respostas = respostas;
         amcFeita.setNome(nomeS.toString());
@@ -239,6 +236,6 @@ public class adicionarAmc extends Fragment {
         Toast.makeText(getActivity(), "AMC inserida com sucesso!", Toast.LENGTH_SHORT).show();
 
 
-    }
+    }*/
 
 }
