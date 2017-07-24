@@ -20,7 +20,7 @@ public class dataBase extends SQLiteOpenHelper {
     private static final String EMAIL = "email";
     private static final String SENHA_ACESSO = "senha_acesso";
     private static final String _ID = "_id";*/
-    public static final int VERSAO = 7;
+    public static final int VERSAO = 8;
 
     public dataBase(Context context) {
 
@@ -53,7 +53,9 @@ public class dataBase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "drop table usuarios";
+        String sql1 = "drop table amc";
         db.execSQL(sql);
+        db.execSQL(sql1);
         onCreate(db);
 
     }

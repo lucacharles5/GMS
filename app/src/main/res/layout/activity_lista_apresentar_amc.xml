@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shadow_grey"
-    android:paddingLeft="15dp"
-    android:paddingBottom="15dp"
+    android:paddingLeft="10dp"
+    android:paddingBottom="10dp"
     android:paddingTop="10dp">
 
 
@@ -79,7 +79,7 @@
         android:layout_alignBaseline="@+id/nome"
         android:layout_alignBottom="@+id/nome"
         android:layout_alignEnd="@+id/contratada"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/contData"
@@ -88,8 +88,7 @@
         android:text="05/05/2017"
         android:textAllCaps="true"
         android:textSize="15sp"
-        android:maxLength="18"
-        android:paddingLeft="8dp"
+        android:paddingLeft="5dp"
         android:layout_alignBaseline="@+id/data"
         android:layout_alignBottom="@+id/data"
         android:layout_toEndOf="@+id/data" />
