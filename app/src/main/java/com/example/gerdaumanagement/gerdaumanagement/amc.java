@@ -13,7 +13,7 @@ public class amc {
     private String contratada;
     public String tipo;
     public String data;
-    public String resultado;
+    public double resultado;
     ArrayList<Integer> respostas = new ArrayList<>();
     public String respostasString;
 
@@ -59,11 +59,11 @@ public class amc {
         this.id = id;
     }
 
-    public String getResultado() {
+    public double getResultado() {
         return resultado;
     }
 
-    public void getResultado(String resultado) {
+    public void setResultado(double resultado) {
         this.resultado = resultado;
     }
 

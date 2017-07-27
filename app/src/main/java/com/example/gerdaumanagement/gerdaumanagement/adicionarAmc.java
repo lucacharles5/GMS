@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.id.list;
 import static com.example.gerdaumanagement.gerdaumanagement.R.id.dataRealizada;
 
 
@@ -57,6 +58,12 @@ public class adicionarAmc extends Fragment  {
 
         List<String> listNomes = new ArrayList<String>();
         listNomes = db.buscarUsuarios();
+
+        for (int i = 0; i < listNomes.size(); i++) {
+            if (listNomes.get(i).equals("admin")) {
+                listNomes.remove(i);
+            }
+        }
 
         List<String> listContratadas = new ArrayList<String>();
         listContratadas.add("AGROFUTURA");
@@ -125,33 +132,10 @@ public class adicionarAmc extends Fragment  {
         data.putString("tipo", tipoS.getSelectedItem().toString());
         data.putString("data",dataS.getText().toString());
 
-        if(tipoS.getSelectedItem().toString().equals("Mensal")){
-            ((MenuDrawer) getActivity()).setActionBarTitle("AMC Mensal");
-            tipoMensal tipoMensal = new tipoMensal();
-            tipoMensal.setArguments(data);
-            FragmentManager manager = getFragmentManager();
-            manager.beginTransaction().replace(R.id.content, tipoMensal, tipoMensal.getTag()).addToBackStack(null).commit();
-
-        }else{
-            if(tipoS.getSelectedItem().toString().equals("Semestral")){
-                ((MenuDrawer) getActivity()).setActionBarTitle("AMC Semestral");
-                tipoSemestral tipoSemestral = new tipoSemestral();
-                tipoSemestral.setArguments(data);
-                FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.content, tipoSemestral, tipoSemestral.getTag()).addToBackStack(null).commit();
-
-            }else{
-                if(tipoS.getSelectedItem().toString().equals("Trimestral")){
-                    ((MenuDrawer) getActivity()).setActionBarTitle("AMC Trimestral");
-                    tipoTrimestral tipoTrimestral = new tipoTrimestral();
-                    tipoTrimestral.setArguments(data);
-                    FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().replace(R.id.content, tipoTrimestral, tipoTrimestral.getTag()).addToBackStack(null).commit();
-
-
-                }
-            }
-        }
+        preencherAmc preencherAmc = new preencherAmc();
+        preencherAmc.setArguments(data);
+        FragmentManager manager = getFragmentManager();
+        manager.beginTransaction().replace(R.id.content, preencherAmc, preencherAmc.getTag()).addToBackStack(null).commit();
 
 
     }

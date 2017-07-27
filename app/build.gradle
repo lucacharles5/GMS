@@ -24,6 +24,7 @@ dependencies {
 }
 
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -71,4 +72,7 @@ dependencies {
 }
 dependencies {
     compile 'com.android.support.constraint:constraint-layout:+'
+}
+dependencies {
+    compile 'com.android.support:support-v4:25.+'
 }

@@ -66,7 +66,7 @@ public class db_funcao extends adicionar_usuario {
         Cursor cursor = db.query("usuarios", null, null, null, null, null, "nome ASC");
 
         if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
+            cursor.moveToLast();
 
             do {
 
@@ -83,7 +83,7 @@ public class db_funcao extends adicionar_usuario {
 
                 list.add(u);
 
-            } while (cursor.moveToNext());
+            } while (cursor.moveToPrevious());
         }
 
         return (list);
@@ -199,7 +199,7 @@ public class db_funcao extends adicionar_usuario {
         Cursor cursor = db.query("amc", null, null, null, null, null, null);
 
         if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
+            cursor.moveToLast();
 
             do {
 
@@ -210,9 +210,10 @@ public class db_funcao extends adicionar_usuario {
                 u.setTipo(cursor.getString(3));
                 u.setData(cursor.getString(4));
                 u.setRespostasString(cursor.getString(5));
+                u.setResultado(cursor.getDouble(6));
                 list.add(u);
 
-            } while (cursor.moveToNext());
+            } while (cursor.moveToPrevious());
         }
 
         return (list);

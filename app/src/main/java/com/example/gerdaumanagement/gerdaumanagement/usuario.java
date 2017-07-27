@@ -44,6 +44,11 @@ public class usuario extends Fragment {
 
         List<usuarioData> list = bd.buscar();
         //ArrayAdapter<usuarioData> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, list);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getNome().equals("admin")) {
+                list.remove(i);
+            }
+        }
 
         UsuarioAdapter adapter  = new UsuarioAdapter(list, getActivity());
 

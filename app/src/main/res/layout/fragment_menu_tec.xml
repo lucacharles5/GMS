@@ -28,47 +28,27 @@
 
             <ImageView
                 android:id="@+id/ic_amc"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="15dp"
-                app:srcCompat="@drawable/ic_amc" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="6dp"
+                app:srcCompat="@drawable/ic_amc"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:id="@+id/amc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/amc"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/empresaAmc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="12dp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="18sp"
                 android:layout_toEndOf="@+id/ic_amc"
-                android:text="ABC Empresa"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textSize="15sp" />
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true" />
 
-            <TextView
-                android:id="@+id/mediaAmc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/empresaAmc"
-                android:layout_marginLeft="180dp"
-                android:text="@string/media" />
 
-            <TextView
-                android:id="@+id/mediaValorAmc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_toEndOf="@+id/mediaAmc"
-                android:paddingLeft="5dp"
-                android:text="81,6%"
-                android:textSize="25sp" />
 
 
         </RelativeLayout>

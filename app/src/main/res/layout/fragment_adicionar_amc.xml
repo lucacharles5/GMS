@@ -99,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="59dp"
-        android:text="Preencher AMC"
+        android:text="Preencher Avaliação"
         android:layout_below="@+id/cadastroAvaliador"
         android:layout_centerHorizontal="true"
         android:background="@drawable/gradiente_azul"

@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -90,13 +91,43 @@ public class tecAmc extends Fragment {
             TextView contTipo = (TextView) view.findViewById(R.id.contTipo);
             TextView contContradada = (TextView) view.findViewById(R.id.contratada);
             TextView contData = (TextView) view.findViewById(R.id.contData);
+            TextView contResultado = (TextView) view.findViewById(R.id.contResultado);
+            TextView contIndicador = (TextView) view.findViewById(R.id.indicador);
 
+            DecimalFormat decimal = new DecimalFormat( "0.00" );
+            String resultadoFinal = decimal.format(showAmc.getResultado());
 
             //populando as Views
             contNome.setText(String.valueOf(showAmc.getNome()));
             contTipo.setText(String.valueOf(showAmc.getTipo()));
             contContradada.setText(String.valueOf(showAmc.getContratada()));
             contData.setText(String.valueOf(showAmc.getData()));
+            contResultado.setText(resultadoFinal);
+
+            View indicador = view.findViewById(R.id.linearLayout3);
+
+            if(showAmc.getResultado()>= 90){
+
+                contIndicador.setText("Ótimo");
+                indicador.setBackgroundColor(getResources().getColor(R.color.verde));
+            }else{
+                if(showAmc.getResultado()>= 80 && showAmc.getResultado()<90 ){
+                    contIndicador.setText("Bom");
+                    indicador.setBackgroundColor(getResources().getColor(R.color.azul));
+
+                }else{
+                    if(showAmc.getResultado()>= 70 && showAmc.getResultado()<80 ){
+                        contIndicador.setText("Regular");
+                        indicador.setBackgroundColor(getResources().getColor(R.color.amarelo));
+                    }else{
+                        contIndicador.setText("Insatisfatório");
+                        indicador.setBackgroundColor(getResources().getColor(R.color.vermelho));
+                    }
+                }
+            }
+
+
+
 
 
             return view;
