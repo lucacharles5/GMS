@@ -1,14 +1,14 @@
-package com.example.gerdaumanagement.gerdaumanagement;
+package pojos;
 
 /**
  * Created by Lucas on 24/07/2017.
  */
 
-class tiposAvaliacao {
+public class tiposAvaliacao {
     private String questao;
     private char potencial;
     private String titulo;
-    private int selectedRadioButtonId;
+    private int selectedRadioButtonId ;
 
     public int getSelectedRadioButtonId(){
         return selectedRadioButtonId;

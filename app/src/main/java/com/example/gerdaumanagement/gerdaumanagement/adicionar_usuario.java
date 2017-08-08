@@ -14,6 +14,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import SQLITE.db_funcao;
+import acessoWS.usuarioDAO;
+import pojos.usuarios;
+
 import static com.example.gerdaumanagement.gerdaumanagement.R.id.editarUser;
 import static com.example.gerdaumanagement.gerdaumanagement.R.id.email;
 import static com.example.gerdaumanagement.gerdaumanagement.R.id.login;
@@ -26,7 +30,7 @@ import static com.example.gerdaumanagement.gerdaumanagement.R.id.senha;
  * A simple {@link Fragment} subclass.
  */
 public class adicionar_usuario extends usuario {
-    private usuarioData usuario = new usuarioData();
+    private usuarios usuario = new usuarios();
 
     private EditText nomeEt;
     private EditText emailEt;
@@ -34,7 +38,7 @@ public class adicionar_usuario extends usuario {
     private EditText senhaEt;
     private EditText loginEt;
    // private EditText confirmarSenhaEt;
-    private String tipoFuncSp ;
+    private String cargo ;
     private Button salvarBt;
     private Button editarUserBt;
 
@@ -47,6 +51,8 @@ public class adicionar_usuario extends usuario {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
 
         String TAG = "myApp";
 
@@ -82,7 +88,7 @@ public class adicionar_usuario extends usuario {
                 //pega nome pela posição
                 String tipoF = parent.getItemAtPosition(posicao).toString();
                 //imprime um Toast na tela com o nome que foi selecionado
-                tipoFuncSp = tipoF;
+                cargo = tipoF;
             }
 
             @Override
@@ -122,13 +128,13 @@ public class adicionar_usuario extends usuario {
                 String senha = getArguments().getString("senha");
                 String np = getArguments().getString("np");
                 String login = getArguments().getString("login");
-                String tipoFunc = getArguments().getString("tipoFunc");
+                String cargo = getArguments().getString("tipoFunc");
 
 
                 usuario.setId(id);
                 usuario.setNome(nome);
                 usuario.setEmail(email);
-                usuario.setTipoFunc(tipoFunc);
+                usuario.setCargo(cargo);
                 usuario.setNp(np);
                 usuario.setLogin(login);
                 nomeEt.setText(nome);
@@ -202,13 +208,16 @@ public class adicionar_usuario extends usuario {
 
         usuario.setNome(nomeEt.getText().toString());
         usuario.setEmail(emailEt.getText().toString());
-        usuario.setTipoFunc(tipoFuncSp.toString());
+        usuario.setCargo(cargo.toString());
         usuario.setNp(npEt.getText().toString());
         usuario.setSenha(senhaEt.getText().toString());
         usuario.setLogin(loginEt.getText().toString());
 
         db_funcao bd = new db_funcao(getContext());
         bd.inserir(usuario);
+
+        usuarioDAO dao = new usuarioDAO();
+        dao.inserirUsuario(usuario);
 
         Toast.makeText(getActivity(), "Usuário inserido com sucesso!", Toast.LENGTH_SHORT).show();
 
@@ -219,7 +228,7 @@ public class adicionar_usuario extends usuario {
         usuario.setNome(nomeEt.getText().toString());
         usuario.setEmail(emailEt.getText().toString());
         usuario.setNp(npEt.getText().toString());
-        usuario.setTipoFunc(tipoFuncSp.toString());
+        usuario.setCargo(cargo.toString());
         usuario.setSenha(senhaEt.getText().toString());
         usuario.setLogin(loginEt.getText().toString());
 

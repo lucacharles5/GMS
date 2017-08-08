@@ -1,4 +1,4 @@
-package com.example.gerdaumanagement.gerdaumanagement;
+package pojos;
 
 import java.util.ArrayList;
 
@@ -8,14 +8,15 @@ import java.util.ArrayList;
 
 public class amc {
 
-    public int id;
+    private int id;
     private String nome;
     private String contratada;
-    public String tipo;
-    public String data;
+    private String tipo;
+    private String data;
     public double resultado;
-    ArrayList<Integer> respostas = new ArrayList<>();
-    public String respostasString;
+    public ArrayList<Integer> respostas = new ArrayList<>();
+    private String respostasString;
+
 
     public String getRespostasString() {
         return respostasString;

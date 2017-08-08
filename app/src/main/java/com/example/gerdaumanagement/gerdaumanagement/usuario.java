@@ -16,6 +16,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import SQLITE.db_funcao;
+import acessoWS.usuarioDAO;
+import pojos.usuarios;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,108 +45,21 @@ public class usuario extends Fragment {
         });
 
         db_funcao bd = new db_funcao(getContext());
+        usuarioDAO dao = new usuarioDAO();
 
-        List<usuarioData> list = bd.buscar();
-        //ArrayAdapter<usuarioData> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, list);
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getNome().equals("admin")) {
-                list.remove(i);
-            }
-        }
+        List<usuarios> list = bd.buscar();
 
         UsuarioAdapter adapter  = new UsuarioAdapter(list, getActivity());
-
         listaUsuario.setAdapter(adapter);
+
+
+        //List<usuarios> list = bd.buscar();
+        //ArrayAdapter<usuarioData> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, list);
 
         // Inflate the layout for this fragment
         return rootView;
 
     }
-
-
-
-    public class usuarioData {
-
-        private  String nome;
-        private String email;
-        private String np;
-        private String tipoFunc;
-        private String senha;
-        private int id;
-        private String login;
-
-     /* public usuarioData(){
-           this.nome = nome;
-           this.email=email;
-           this.np=np;
-           this.tipoFunc = tipoFunc;
-           this.senha = senha;
-           this.id = id;
-       }*/
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getNome() {
-            return nome;
-        }
-
-        public void setNome(String nome) {
-            this.nome = nome;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getNp() {
-            return np;
-        }
-
-        public void setNp(String np) {
-            this.np = np;
-        }
-
-        public String getTipoFunc() {
-            return tipoFunc;
-        }
-
-        public void setTipoFunc(String tipoFunc) {
-            this.tipoFunc = tipoFunc;
-        }
-
-        public String getSenha() {
-            return senha;
-        }
-
-        public void setSenha(String senha) {
-            this.senha = senha;
-        }
-
-        public String getLogin() {
-            return login;
-        }
-
-        public void setLogin(String login) {
-            this.login = login;
-        }
-
-        @Override
-        public String toString() {
-            return "Nome: " + nome + " Email: " + email + "NP: " + np + "TipoFUnc: " + tipoFunc + "Senha: senha" + senha + "Login:" + login;
-        }
-    }
-
-
 
     public void adicionarUsuario(View view){
 
@@ -158,10 +75,10 @@ public class usuario extends Fragment {
 
     class UsuarioAdapter extends BaseAdapter {
 
-        private final List<usuarioData> listaUser;
+        private final List<usuarios> listaUser;
         private final Activity act;
 
-        public UsuarioAdapter(List<usuarioData> teste, Activity act) {
+        public UsuarioAdapter(List<usuarios> teste, Activity act) {
             this.listaUser = teste;
             this.act = act;
         }
@@ -187,7 +104,7 @@ public class usuario extends Fragment {
             final int auxPosition = position;
 
             final View view = act.getLayoutInflater().inflate(R.layout.activity_layout_usuario, parent, false);
-            usuarioData testeUser = listaUser.get(position);
+            usuarios testeUser = listaUser.get(position);
 
 
             //pegando as referências das Views
@@ -203,7 +120,7 @@ public class usuario extends Fragment {
             nome.setText(String.valueOf(testeUser.getNome()));
             email.setText(String.valueOf(testeUser.getEmail()));
             np.setText(String.valueOf(testeUser.getNp()));
-            tipoFunc.setText(String.valueOf(testeUser.getTipoFunc()));
+            tipoFunc.setText(String.valueOf(testeUser.getCargo()));
             senha.setText(String.valueOf(testeUser.getSenha()));
             login.setText(String.valueOf(testeUser.getLogin()));
 
@@ -231,7 +148,7 @@ public class usuario extends Fragment {
                     data.putString("senha", listaUser.get(auxPosition).getSenha());
                     data.putString("np", listaUser.get(auxPosition).getNp());
                     data.putString("login", listaUser.get(auxPosition).getLogin());
-                    data.putString("tipoFunc", listaUser.get(auxPosition).getTipoFunc());
+                    data.putString("tipoFunc", listaUser.get(auxPosition).getCargo());
                     data.putInt("id", listaUser.get(auxPosition).getId());
                     Fragment fragment = new adicionar_usuario();
                     fragment.setArguments(data);

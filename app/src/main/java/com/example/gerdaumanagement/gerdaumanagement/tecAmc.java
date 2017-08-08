@@ -14,6 +14,9 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import SQLITE.db_funcao;
+import pojos.amc;
+
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,4 +1,4 @@
-package com.example.gerdaumanagement.gerdaumanagement;
+package SQLITE;
 
 /**
  * Created by Lucas on 19/06/2017.
@@ -37,6 +37,7 @@ public class dataBase extends SQLiteOpenHelper {
         db.execSQL("create table amc(_id integer primary key autoincrement, nome text not null, contratada text not null, tipo text not null, data text not null, respostas text not null, resultado real not null);");
 
         // id_usuario integer not null, FOREIGN KEY(id_usuario) REFERENCES usuarios(_id)");
+
 
         ContentValues admin = new ContentValues();
         admin.put("nome" , "admin");

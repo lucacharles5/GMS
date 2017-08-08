@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import SQLITE.db_funcao;
+
 public class MainActivity extends AppCompatActivity {
 
 

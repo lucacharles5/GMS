@@ -20,13 +20,19 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import SQLITE.db_funcao;
+import pojos.amc;
+import pojos.tiposAvaliacao;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class preencherAmc extends Fragment {
 
-    private amc amc = new amc();
+    private pojos.amc amc = new amc();
+
+
     ArrayList<Character> potenciais = new ArrayList<>();
 
     public preencherAmc() {
@@ -47,13 +53,9 @@ public class preencherAmc extends Fragment {
         btnFooter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                amc.resultado = calcularResultado();
+
                 salvarAmc(rootView);
 
-
-                tecAmc tecAmc = new tecAmc();
-                FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.content,tecAmc, tecAmc.getTag()).commit();
             }
         });
 
@@ -106,6 +108,7 @@ public class preencherAmc extends Fragment {
             final tiposAvaliacao pegarpotencial = dadosQuestoes.get(i);
 
             potenciais.add(pegarpotencial.getPotencial());
+            amc.respostas.add(1000);
         }
         //chamada da nossa implementação
         AdapterAmcPersonalizada adapter = new AdapterAmcPersonalizada(dadosQuestoes, getActivity());
@@ -262,12 +265,9 @@ public class preencherAmc extends Fragment {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                    if(dadosAmc.getSelectedRadioButtonId() == 0){
-                        amc.respostas.add(checkedId);
-                    }else{
                         amc.respostas.remove(position);
                         amc.respostas.add(position,checkedId);
-                    }
+
 
                     dadosAmc.setSelectedRadioButtonId(checkedId);
 
@@ -277,22 +277,42 @@ public class preencherAmc extends Fragment {
             return view;
         }
 
-
     }
 
     public void salvarAmc(View view){
 
-        String salvarString = null;
-        for(int i = 0; i < amc.respostas.size();i++){
-            salvarString = salvarString +","+ amc.respostas.get(i);
+        int flag = 0;
+        for(int i =0 ; i< amc.respostas.size();i++){
+
+            if(amc.respostas.get(i)== 1000){
+
+                flag =1;
+
+            }
         }
 
-        amc.setRespostasString(salvarString);
+        if(flag == 1){
+            Toast.makeText(getActivity(), "Responda todas questões", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            amc.resultado = calcularResultado();
+            String salvarString = null;
+            for(int j = 0; j < amc.respostas.size();j++){
+                salvarString = salvarString +","+ amc.respostas.get(j);
+            }
 
-        db_funcao bd = new db_funcao(getContext());
-        bd.inserirAmc(amc);
+            amc.setRespostasString(salvarString);
+            db_funcao bd = new db_funcao(getContext());
+            bd.inserirAmc(amc);
 
-        Toast.makeText(getActivity(), "AMC inserido com sucesso!", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(getActivity(), "Avaliação inserida com sucesso!", Toast.LENGTH_SHORT).show();
+            tecAmc tecAmc = new tecAmc();
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction().replace(R.id.content,tecAmc, tecAmc.getTag()).commit();
+
+        }
+
 
     }
 

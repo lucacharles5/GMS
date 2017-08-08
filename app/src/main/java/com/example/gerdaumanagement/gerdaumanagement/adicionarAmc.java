@@ -19,7 +19,9 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.R.id.list;
+import SQLITE.db_funcao;
+import pojos.amc;
+
 import static com.example.gerdaumanagement.gerdaumanagement.R.id.dataRealizada;
 
 
@@ -120,6 +122,7 @@ public class adicionarAmc extends Fragment  {
         });
 
 
+
         return rootView;
 
     }
@@ -201,25 +204,5 @@ public class adicionarAmc extends Fragment  {
 
     }
 
-
-
-
-
-
-    /*public void salvarRespostas(ArrayList<Integer> respostas) {
-
-        amcFeita.respostas = respostas;
-        amcFeita.setNome(nomeS.toString());
-        amcFeita.setTipo(tipoS.toString());
-        amcFeita.setTerceira(contratadaS.toString());
-        amcFeita.setData(data.getText().toString());
-
-        db_funcao db = new db_funcao(getContext());
-        db.inserirAmc(amcFeita);
-
-        Toast.makeText(getActivity(), "AMC inserida com sucesso!", Toast.LENGTH_SHORT).show();
-
-
-    }*/
 
 }

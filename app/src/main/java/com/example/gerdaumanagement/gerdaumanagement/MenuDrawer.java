@@ -124,6 +124,8 @@ public class MenuDrawer extends AppCompatActivity implements NavigationView.OnNa
         return true;
     }
 
+
+
     //Alterar o titulo da actionbar
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);

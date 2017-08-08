@@ -1,12 +1,18 @@
-package com.example.gerdaumanagement.gerdaumanagement;
+package SQLITE;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.gerdaumanagement.gerdaumanagement.adicionar_usuario;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import acessoWS.usuarioDAO;
+import pojos.amc;
+import pojos.usuarios;
 
 /**
  * Created by Lucas on 19/06/2017.
@@ -22,7 +28,7 @@ public class db_funcao extends adicionar_usuario {
         db = auxdb.getReadableDatabase();
     }
 
-    public void inserir(usuarioData usuario) {
+    public void inserir(usuarios usuario) {
 
         ContentValues valores = new ContentValues();
 
@@ -31,14 +37,15 @@ public class db_funcao extends adicionar_usuario {
         valores.put("email", usuario.getEmail());
         valores.put("np", usuario.getNp());
         valores.put("senha", usuario.getSenha());
-        valores.put("tipoFunc", usuario.getTipoFunc());
+        valores.put("tipoFunc", usuario.getCargo());
         valores.put("login", usuario.getLogin());
+
 
         db.insert("usuarios", null, valores);
 
     }
 
-    public void atualizar(usuarioData usuario) {
+    public void atualizar(usuarios usuario) {
 
         ContentValues valores = new ContentValues();
 
@@ -47,36 +54,39 @@ public class db_funcao extends adicionar_usuario {
         valores.put("email", usuario.getEmail());
         valores.put("np", usuario.getNp());
         valores.put("senha", usuario.getSenha());
-        valores.put("tipoFunc", usuario.getTipoFunc());
+        valores.put("tipoFunc", usuario.getCargo());
         valores.put("login", usuario.getLogin());
 
         db.update("usuarios", valores, "_id=?", new String[]{usuario.getId() + ""});
 
     }
 
-    public void deletar(usuarioData usuario) {
+    public void deletar(usuarios usuario) {
         db.delete("usuarios", "_id = " + usuario.getId(), null);
+        usuarioDAO dao = new usuarioDAO();
+
+        dao.excluirUsuario(usuario.getId());
 
     }
 
-    public List<usuarioData> buscar() {
-        List<usuarioData> list = new ArrayList<>();
+    public List<usuarios> buscar() {
+        List<usuarios> list = new ArrayList<>();
         //String[] colunas = new String[]{"_id","nome","email","np","tipoFunc"};
 
-        Cursor cursor = db.query("usuarios", null, null, null, null, null, "nome ASC");
+        Cursor cursor = db.query("usuarios", null, null, null, null, null, null);
 
         if (cursor.getCount() > 0) {
             cursor.moveToLast();
 
             do {
 
-                usuarioData u = new usuarioData();
+                usuarios u = new usuarios();
 
                 u.setId(cursor.getInt(0));
                 u.setNome(cursor.getString(1));
                 u.setEmail(cursor.getString(2));
                 u.setNp(cursor.getString(3));
-                u.setTipoFunc(cursor.getString(4));
+                u.setCargo(cursor.getString(4));
                 u.setSenha(cursor.getString(5));
                 u.setLogin(cursor.getString(6));
 
