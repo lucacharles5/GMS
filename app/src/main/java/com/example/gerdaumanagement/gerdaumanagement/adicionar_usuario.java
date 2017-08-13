@@ -37,8 +37,8 @@ public class adicionar_usuario extends usuario {
     private EditText npEt;
     private EditText senhaEt;
     private EditText loginEt;
-   // private EditText confirmarSenhaEt;
-    private String cargo ;
+    // private EditText confirmarSenhaEt;
+    private String cargo;
     private Button salvarBt;
     private Button editarUserBt;
 
@@ -53,10 +53,9 @@ public class adicionar_usuario extends usuario {
                              Bundle savedInstanceState) {
 
 
-
         String TAG = "myApp";
 
-        View rootView =  inflater.inflate(R.layout.fragment_adicionar_usuario, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_adicionar_usuario, container, false);
 
 
         Button botao = (Button) rootView.findViewById(salvar);
@@ -67,7 +66,6 @@ public class adicionar_usuario extends usuario {
                 verificarUsuario(v);
             }
         });
-
 
 
         //Alterar nome da actionbar
@@ -110,8 +108,8 @@ public class adicionar_usuario extends usuario {
 
 
         Intent intent = getActivity().getIntent();
-        if(intent != null){
-            if(getArguments() != null){
+        if (intent != null) {
+            if (getArguments() != null) {
                 ((MenuDrawer) getActivity()).setActionBarTitle("Editar Usuário");
 
                 getArguments().getString("nome", "");
@@ -152,12 +150,12 @@ public class adicionar_usuario extends usuario {
             }
         }
 
-       // confirmarSenhaEt = (EditText) rootView.findViewById(confirmarSenha);
+        // confirmarSenhaEt = (EditText) rootView.findViewById(confirmarSenha);
 
         getActivity().getFragmentManager().popBackStack();
 
 
-       Button botaoeditar = (Button) rootView.findViewById(editarUser);
+        Button botaoeditar = (Button) rootView.findViewById(editarUser);
         botaoeditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,7 +167,7 @@ public class adicionar_usuario extends usuario {
 
     }
 
-    public void verificarUsuario (View view) {
+    public void verificarUsuario(View view) {
 
 
         if (nomeEt.getText().length() == 0) {
@@ -183,15 +181,14 @@ public class adicionar_usuario extends usuario {
                 if (npEt.getText().length() == 0) {
                     npEt.setError("Campo vazio");
                 } else {
-                    if (loginEt.getText().length() == 0 ){
+                    if (loginEt.getText().length() == 0) {
                         loginEt.setError("Campo Vazio");
-                    }else{
-                        if (senhaEt.getText().length() == 0 ){
+                    } else {
+                        if (senhaEt.getText().length() == 0) {
                             senhaEt.setError("Campo Vazio");
-                        }else {
+                        } else {
                             salvarUsuario(view);
                         }
-
 
 
                     }
@@ -204,7 +201,7 @@ public class adicionar_usuario extends usuario {
     }
 
 
-    public void salvarUsuario(View view){
+    public void salvarUsuario(View view) {
 
         usuario.setNome(nomeEt.getText().toString());
         usuario.setEmail(emailEt.getText().toString());
@@ -223,7 +220,7 @@ public class adicionar_usuario extends usuario {
 
     }
 
-    public void editarUsuario(View view){
+    public void editarUsuario(View view) {
 
         usuario.setNome(nomeEt.getText().toString());
         usuario.setEmail(emailEt.getText().toString());
@@ -237,7 +234,7 @@ public class adicionar_usuario extends usuario {
         bd.atualizar(usuario);
 
 
-        Toast.makeText(getActivity(), "Usuário \""+usuario.getNome()+"\" atuailizado com sucesso.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Usuário \"" + usuario.getNome() + "\" atuailizado com sucesso.", Toast.LENGTH_SHORT).show();
     }
 
 

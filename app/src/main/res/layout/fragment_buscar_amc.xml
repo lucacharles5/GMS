@@ -1,16 +1,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/top"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="2dp"
-    tools:context="com.example.gerdaumanagement.gerdaumanagement.adicionarAmc">
+    tools:context=".buscarAMC">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="105dp"
+        android:text="Informe os dados que deseja buscar." />
 
     <RelativeLayout
         android:id="@+id/cadastroAvaliador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView3"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/shadow_grey"
         android:padding="10dp">
 
@@ -60,18 +70,32 @@
 
 
         <EditText
-            android:id="@+id/dataRealizada"
+            android:id="@+id/dataInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/spinnerTipo"
-            android:layout_below="@+id/contratadasAmc"
-            android:layout_toEndOf="@+id/spinnerTipo"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/TiposLabel"
             android:clickable="true"
             android:ems="6"
             android:focusableInTouchMode="true"
-            android:hint="Data Realizada"
+            android:hint="Data Início"
             android:imeOptions="actionDone"
             android:inputType="date" />
+
+        <EditText
+            android:id="@+id/dataFim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/dataInicio"
+            android:layout_alignBottom="@+id/dataInicio"
+            android:layout_toEndOf="@+id/dataInicio"
+            android:clickable="true"
+            android:ems="6"
+            android:focusableInTouchMode="true"
+            android:hint="Data Fim"
+            android:imeOptions="actionDone"
+            android:inputType="date" />
+
 
         <TextView
             android:id="@+id/TiposLabel"
@@ -103,8 +127,7 @@
         android:layout_marginTop="59dp"
         android:background="@drawable/gradiente_azul"
         android:padding="15dp"
-        android:text="Preencher Avaliação"
+        android:text="Buscar Avaliações"
         android:textColor="@color/cinza" />
-
 
 </RelativeLayout>

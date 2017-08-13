@@ -14,12 +14,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
+
+import acessoWS.usuarioService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MenuDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView nomeUser;
     private TextView cargoUser;
+    private String login;
+    private String cargoCompare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,26 +51,52 @@ public class MenuDrawer extends AppCompatActivity implements NavigationView.OnNa
 
         menuTec menuTec = new menuTec();
         FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.content,menuTec, menuTec.getTag()).commit();
+        manager.beginTransaction().replace(R.id.content, menuTec, menuTec.getTag()).commit();
 
 
-        View hView =  navigationView.getHeaderView(0);
+        View hView = navigationView.getHeaderView(0);
 
-       nomeUser = (TextView) hView.findViewById(R.id.nomeFuncAlterar);
+        nomeUser = (TextView) hView.findViewById(R.id.nomeFuncAlterar);
         cargoUser = (TextView) hView.findViewById(R.id.cargoFuncAlterar);
 
         Intent intent = getIntent();
 
-            if(intent != null) {
-                String nome = intent.getStringExtra("chave1");
-                String cargo = intent.getStringExtra("chave2");
+        if (intent != null) {
+            login = intent.getStringExtra("chave1");
+           /* nomeUser.setText(nome);
+            cargoUser.setText(cargo);
+            cargoCompare = cargo;*/
+        }
 
+        alterarNomeECargo();
+
+    }
+
+    public void alterarNomeECargo(){
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(usuarioService.BASE_URL).addConverterFactory(GsonConverterFactory.create(usuarioService.g)).build();
+        usuarioService service = retrofit.create(usuarioService.class);
+        retrofit2.Call<List<String>> dados = service.verificarCargoENome(login);
+        dados.enqueue(new Callback<List<String>>() {
+
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                List<String> dados = response.body();
+                String nome, cargo;
+
+                cargo = dados.get(0);
+                nome = dados.get(1);
+                cargoCompare = cargo;
                 nomeUser.setText(nome);
                 cargoUser.setText(cargo);
             }
-        }
 
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
 
+            }
+        });
+    }
 
 
     @Override
@@ -102,7 +140,7 @@ public class MenuDrawer extends AppCompatActivity implements NavigationView.OnNa
         if (id == R.id.home) {
             menuTec menuTec = new menuTec();
             FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.content,menuTec, menuTec.getTag()).addToBackStack(null).commit();
+            manager.beginTransaction().replace(R.id.content, menuTec, menuTec.getTag()).addToBackStack(null).commit();
 
         } else if (id == R.id.perfil) {
 
@@ -113,10 +151,16 @@ public class MenuDrawer extends AppCompatActivity implements NavigationView.OnNa
         } else if (id == R.id.exit) {
 
 
-        }else if (id == R.id.usuario) {
-            usuario usuario = new usuario();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.content,usuario, usuario.getTag()).addToBackStack(null).commit();
+        } else if (id == R.id.usuario) {
+
+            if (cargoCompare.equals("gestor") == true || cargoCompare.equals("administradorSistema") == true) {
+                usuario usuario = new usuario();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.content, usuario, usuario.getTag()).addToBackStack(null).commit();
+            } else {
+                Toast.makeText(getBaseContext(), "Você não tem permissão para acessar os dados dos usuários. Contate o seu gestor", Toast.LENGTH_SHORT).show();
+            }
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -125,13 +169,12 @@ public class MenuDrawer extends AppCompatActivity implements NavigationView.OnNa
     }
 
 
-
     //Alterar o titulo da actionbar
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
 
-    public void selecionaMenuTec(View view){
+    public void selecionaMenuTec(View view) {
 
         if (view.getId() == R.id.idAmc) {
 
@@ -140,29 +183,34 @@ public class MenuDrawer extends AppCompatActivity implements NavigationView.OnNa
 
             tecAmc tecAmc = new tecAmc();
             FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.content,tecAmc, tecAmc.getTag()).addToBackStack(null).commit();
+            manager.beginTransaction().replace(R.id.content, tecAmc, tecAmc.getTag()).addToBackStack(null).commit();
 
-        }else if (view.getId() == R.id.idIgp) {
+        } else if (view.getId() == R.id.idIgp) {
 
         } else if (view.getId() == R.id.idIpl) {
 
-        }else if (view.getId() == R.id.idOac) {
+        } else if (view.getId() == R.id.idOac) {
 
-        }else if (view.getId() == R.id.idIpu) {
+        } else if (view.getId() == R.id.idIpu) {
 
-        }else if (view.getId() == R.id.idHoraSeg) {
+        } else if (view.getId() == R.id.idHoraSeg) {
 
-        }else if (view.getId() == R.id.idRiscoC) {
+        } else if (view.getId() == R.id.idRiscoC) {
 
         }
     }
 
-    public void adicionarAmc(View view){
+    public void adicionarAmc(View view) {
         adicionarAmc adicionarAmc = new adicionarAmc();
         FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.content,adicionarAmc, adicionarAmc.getTag()).addToBackStack(null).commit();
+        manager.beginTransaction().replace(R.id.content, adicionarAmc, adicionarAmc.getTag()).addToBackStack(null).commit();
     }
 
+    public void buscarAmc(View view) {
+        buscarAMC buscarAMC = new buscarAMC();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.content, buscarAMC, buscarAMC.getTag()).addToBackStack(null).commit();
+    }
 
 
 }

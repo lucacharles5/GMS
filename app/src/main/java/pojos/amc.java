@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class amc {
 
+    public double resultado;
+    public ArrayList<Integer> respostas = new ArrayList<>();
     private int id;
     private String nome;
     private String contratada;
     private String tipo;
     private String data;
-    public double resultado;
-    public ArrayList<Integer> respostas = new ArrayList<>();
     private String respostasString;
 
 
@@ -88,7 +88,7 @@ public class amc {
     @Override
     public String toString() {
         return "Nome: " + nome + " Contratada : " +
-                contratada + "Tipo: " + tipo + "Data: " + data;
+            contratada + "Tipo: " + tipo + "Data: " + data + "RespostasString: " + respostasString + "Resultado: " + resultado;
     }
 
 }

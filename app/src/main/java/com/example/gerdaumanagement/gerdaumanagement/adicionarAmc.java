@@ -28,7 +28,7 @@ import static com.example.gerdaumanagement.gerdaumanagement.R.id.dataRealizada;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class adicionarAmc extends Fragment  {
+public class adicionarAmc extends Fragment {
     private amc amcFeita = new amc();
     private Spinner nomeS;
     private Spinner contratadaS;
@@ -38,14 +38,6 @@ public class adicionarAmc extends Fragment  {
     public adicionarAmc() {
         // Required empty public constructor
     }
-
-    String[] COLABORADORES = new String[]{"Clever", "Diogo", "Fernando", "Mylena", "Lucas Charles", "Lucas Rafael", "Ediberto", "Eduardo"};
-    String[] CONTRATADAS = new String[]{"AGROFUTURA CULTIVO DE EUCALIPTO E COMERCIO LTDA.", "AGROSUL PRODUCAO DE CARVAO LTDA.", "AJR EMPREENDIMENTO RURAIS LTDA.",
-            "BELA RODRIGUES LTDA.", "CJR TRANSPORTES IMPORTAÇAO E EXPOR. LTDA.", "DEL REY REFLORESTAMENTO LTDA.", "FERREIRA SERVIÇOS FLORESTAIS LTDA.",
-            "GLOBAL ENERGETICA LTDA.", "INVENTAR GMB CONSULTORIA LTDA.", "L E LOCAÇAO DE MAQ EQUIP LTDA.TRANSROCHA", "NG TRANSPORTES", "MINAS SUL FLORESTAL LTDA EPP", "MJ REFLORESTAMENTO LTDA ME",
-            "MV TRATORES E SERVIÇOS LTDA", "REFLORESTAR SERVIÇOS FLORESTAIS LTDA.", "REFLORESTAMENTO PIEDADE LTDA", "SANTA CLARA SERVICOS FLORESTAIS LTD", "SANTOS ARAUJO  SERVIÇOS FLORESTAIS LTDA.",
-            "TOMBA TERRA", "UNIAO PRESTAÇAO DE SERIVÇOS FLORSTAIS LTDA."};
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -117,23 +109,22 @@ public class adicionarAmc extends Fragment  {
             @Override
             public void onClick(View view) {
 
-                preencherAMC(nomeS, contratadaS,tipoS,dataS);
+                preencherAMC(nomeS, contratadaS, tipoS, dataS);
             }
         });
-
 
 
         return rootView;
 
     }
 
-    public void preencherAMC(Spinner nomeS, Spinner contratadaS, Spinner tipoS, EditText dataS){
+    public void preencherAMC(Spinner nomeS, Spinner contratadaS, Spinner tipoS, EditText dataS) {
 
         Bundle data = new Bundle();
-        data.putString("nome",nomeS.getSelectedItem().toString());
+        data.putString("nome", nomeS.getSelectedItem().toString());
         data.putString("contratada", contratadaS.getSelectedItem().toString());
         data.putString("tipo", tipoS.getSelectedItem().toString());
-        data.putString("data",dataS.getText().toString());
+        data.putString("data", dataS.getText().toString());
 
         preencherAmc preencherAmc = new preencherAmc();
         preencherAmc.setArguments(data);

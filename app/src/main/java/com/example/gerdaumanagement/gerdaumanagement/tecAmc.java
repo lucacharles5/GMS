@@ -24,7 +24,6 @@ import pojos.amc;
 public class tecAmc extends Fragment {
 
 
-
     public tecAmc() {
         // Required empty public constructor
     }
@@ -53,7 +52,6 @@ public class tecAmc extends Fragment {
 
 
     }
-
 
 
     class AdapterAmcPersonalizada extends BaseAdapter {
@@ -97,7 +95,7 @@ public class tecAmc extends Fragment {
             TextView contResultado = (TextView) view.findViewById(R.id.contResultado);
             TextView contIndicador = (TextView) view.findViewById(R.id.indicador);
 
-            DecimalFormat decimal = new DecimalFormat( "0.00" );
+            DecimalFormat decimal = new DecimalFormat("0.00");
             String resultadoFinal = decimal.format(showAmc.getResultado());
 
             //populando as Views
@@ -109,20 +107,20 @@ public class tecAmc extends Fragment {
 
             View indicador = view.findViewById(R.id.linearLayout3);
 
-            if(showAmc.getResultado()>= 90){
+            if (showAmc.getResultado() >= 90) {
 
                 contIndicador.setText("Ótimo");
                 indicador.setBackgroundColor(getResources().getColor(R.color.verde));
-            }else{
-                if(showAmc.getResultado()>= 80 && showAmc.getResultado()<90 ){
+            } else {
+                if (showAmc.getResultado() >= 80 && showAmc.getResultado() < 90) {
                     contIndicador.setText("Bom");
                     indicador.setBackgroundColor(getResources().getColor(R.color.azul));
 
-                }else{
-                    if(showAmc.getResultado()>= 70 && showAmc.getResultado()<80 ){
+                } else {
+                    if (showAmc.getResultado() >= 70 && showAmc.getResultado() < 80) {
                         contIndicador.setText("Regular");
                         indicador.setBackgroundColor(getResources().getColor(R.color.amarelo));
-                    }else{
+                    } else {
                         contIndicador.setText("Insatisfatório");
                         indicador.setBackgroundColor(getResources().getColor(R.color.vermelho));
                     }
@@ -130,15 +128,11 @@ public class tecAmc extends Fragment {
             }
 
 
-
-
-
             return view;
         }
 
 
     }
-
 
 
 }

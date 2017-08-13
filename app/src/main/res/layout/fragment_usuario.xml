@@ -10,18 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/addUser">
-    </ListView>
+        android:layout_below="@+id/addUser"></ListView>
 
     <Button
         android:id="@+id/addUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradiente_azul_semconor"
-        android:text="Adicionar Usuário"
-        android:textColor="@color/cinza"
-
         android:layout_below="@+id/relativeLayout"
-        android:layout_marginTop="2dp"/>
+        android:layout_marginTop="2dp"
+        android:background="@drawable/gradiente_azul_semconor"
+
+        android:text="Adicionar Usuário"
+        android:textColor="@color/cinza" />
 
 </RelativeLayout>

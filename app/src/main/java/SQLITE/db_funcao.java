@@ -37,7 +37,7 @@ public class db_funcao extends adicionar_usuario {
         valores.put("email", usuario.getEmail());
         valores.put("np", usuario.getNp());
         valores.put("senha", usuario.getSenha());
-        valores.put("tipoFunc", usuario.getCargo());
+        valores.put("cargo", usuario.getCargo());
         valores.put("login", usuario.getLogin());
 
 
@@ -54,7 +54,7 @@ public class db_funcao extends adicionar_usuario {
         valores.put("email", usuario.getEmail());
         valores.put("np", usuario.getNp());
         valores.put("senha", usuario.getSenha());
-        valores.put("tipoFunc", usuario.getCargo());
+        valores.put("cargo", usuario.getCargo());
         valores.put("login", usuario.getLogin());
 
         db.update("usuarios", valores, "_id=?", new String[]{usuario.getId() + ""});
@@ -169,11 +169,11 @@ public class db_funcao extends adicionar_usuario {
 
         try {
 
-            String selectQuery = "select tipoFunc from usuarios where login = '" + login + "'";
+            String selectQuery = "select cargo from usuarios where login = '" + login + "'";
 
             Cursor cursor = db.rawQuery(selectQuery, null);
             cursor.moveToFirst();
-            String nomeString = cursor.getString(cursor.getColumnIndex("tipoFunc"));
+            String nomeString = cursor.getString(cursor.getColumnIndex("cargo"));
 
             StringBuilder conversor = new StringBuilder();
             conversor.append(nomeString);
@@ -191,6 +191,7 @@ public class db_funcao extends adicionar_usuario {
 
         ContentValues valores = new ContentValues();
 
+
         valores.put("nome", dadosAmc.getNome());
         valores.put("tipo", dadosAmc.getTipo());
         valores.put("data", dadosAmc.getData());
@@ -199,6 +200,24 @@ public class db_funcao extends adicionar_usuario {
         valores.put("resultado", dadosAmc.getResultado());
 
         db.insert("amc", null, valores);
+
+        amcNoMySQL(valores);
+
+    }
+
+    private void amcNoMySQL(ContentValues valores) {
+
+        amc amcinseri = new amc();
+
+        amcinseri.setNome(valores.getAsString("nome"));
+        amcinseri.setTipo(valores.getAsString("tipo"));
+        amcinseri.setData(valores.getAsString("data"));
+        amcinseri.setContratada(valores.getAsString("contratada"));
+        amcinseri.setRespostasString(valores.getAsString("respostas"));
+        amcinseri.setResultado(valores.getAsFloat("resultado"));
+
+        usuarioDAO dao = new usuarioDAO();
+        dao.inserirAmc(amcinseri);
     }
 
     public List<amc> buscarAmc() {

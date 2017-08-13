@@ -8,20 +8,21 @@ public class tiposAvaliacao {
     private String questao;
     private char potencial;
     private String titulo;
-    private int selectedRadioButtonId ;
-
-    public int getSelectedRadioButtonId(){
-        return selectedRadioButtonId;
-    }
-    public void setSelectedRadioButtonId(int radioButtonId){
-        selectedRadioButtonId = radioButtonId;
-    }
+    private int selectedRadioButtonId;
 
     public tiposAvaliacao(String questao, char potencial, String titulo) {
         this.questao = questao;
         this.potencial = potencial;
         this.titulo = titulo;
 
+    }
+
+    public int getSelectedRadioButtonId() {
+        return selectedRadioButtonId;
+    }
+
+    public void setSelectedRadioButtonId(int radioButtonId) {
+        selectedRadioButtonId = radioButtonId;
     }
 
     public String getQuestao() {

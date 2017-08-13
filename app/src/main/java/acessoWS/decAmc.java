@@ -8,13 +8,14 @@ import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
 
-import pojos.usuarios;
+import pojos.amc;
 
 /**
- * Created by Lucas on 08/08/2017.
+ * Created by Lucas on 10/08/2017.
  */
 
-public class dec implements JsonDeserializer {
+public class decAmc implements JsonDeserializer {
+
     @Override
     public Object deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonElement element = json.getAsJsonObject();
@@ -22,7 +23,7 @@ public class dec implements JsonDeserializer {
 
             element = json.getAsJsonObject();
         }
-        return (new Gson().fromJson(element, usuarios.class));
+        return (new Gson().fromJson(element, amc.class));
     }
 
 }

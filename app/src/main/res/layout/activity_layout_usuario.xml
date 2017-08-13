@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shadow_grey"
+    android:orientation="vertical"
     android:padding="5dp">
 
     <TextView
@@ -18,129 +18,129 @@
         android:id="@+id/nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lucas Charles de Oliveira Gomes"
-        android:textSize="15dp"
-        android:layout_toEndOf="@+id/tipoFuncLabel"
         android:layout_alignBottom="@+id/nomeLabel"
+        android:layout_alignTop="@+id/nomeLabel"
+        android:layout_toEndOf="@+id/tipoFuncLabel"
         android:gravity="center"
-        android:layout_alignTop="@+id/nomeLabel" />
+        android:text="Lucas Charles de Oliveira Gomes"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/emailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email:"
-        android:layout_below="@+id/npLabel"
         android:layout_alignParentStart="true"
-        android:textSize="20dp"/>
+        android:layout_below="@+id/npLabel"
+        android:text="Email:"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lucacharles@hotmail.com"
-        android:textSize="15dp"
-        android:gravity="center"
         android:layout_above="@+id/tipoFuncLabel"
+        android:layout_alignTop="@+id/emailLabel"
         android:layout_toEndOf="@+id/tipoFuncLabel"
-        android:layout_alignTop="@+id/emailLabel" />
+        android:gravity="center"
+        android:text="lucacharles@hotmail.com"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/npLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NP:"
-        android:layout_below="@+id/nomeLabel"
         android:layout_alignParentStart="true"
-        android:textSize="20dp"/>
+        android:layout_below="@+id/nomeLabel"
+        android:text="NP:"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/np"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12345678"
-        android:textSize="15dp"
-        android:gravity="center"
+        android:layout_above="@+id/emailLabel"
         android:layout_below="@+id/nomeLabel"
         android:layout_toEndOf="@+id/npLabel"
-        android:layout_above="@+id/emailLabel" />
+        android:gravity="center"
+        android:text="12345678"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/tipoFuncLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cargo:"
-        android:textSize="20dp"
+        android:layout_alignStart="@+id/emailLabel"
         android:layout_below="@+id/emailLabel"
-        android:layout_alignStart="@+id/emailLabel" />
+        android:text="Cargo:"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/cargo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Técnico de Segurança"
-        android:textSize="15dp"
-        android:gravity="center"
+        android:layout_alignBottom="@+id/tipoFuncLabel"
         android:layout_below="@+id/email"
         android:layout_toEndOf="@+id/nomeLabel"
-        android:layout_alignBottom="@+id/tipoFuncLabel" />
+        android:gravity="center"
+        android:text="Técnico de Segurança"
+        android:textSize="15dp" />
 
     <ImageView
         android:id="@+id/deletar"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        app:srcCompat="@drawable/ic_delete"
         android:layout_alignBottom="@+id/senha"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        app:srcCompat="@drawable/ic_delete" />
 
     <ImageView
         android:id="@+id/editar"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        app:srcCompat="@drawable/ic_editar"
-        android:layout_marginEnd="15dp"
         android:layout_alignTop="@+id/senha"
-        android:layout_toStartOf="@+id/deletar" />
+        android:layout_marginEnd="15dp"
+        android:layout_toStartOf="@+id/deletar"
+        app:srcCompat="@drawable/ic_editar" />
 
     <TextView
         android:id="@+id/usuarioLabeç"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Usuário:"
-        android:textSize="20dp"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/tipoFuncLabel"
-        android:layout_alignParentStart="true" />
+        android:text="Usuário:"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lgomes"
-        android:textSize="15dp"
-        android:gravity="center"
+        android:layout_above="@+id/senha"
         android:layout_below="@+id/cargo"
         android:layout_toEndOf="@+id/usuarioLabeç"
-        android:layout_above="@+id/senha" />
+        android:gravity="center"
+        android:text="lgomes"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/senhaLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Senha:"
-        android:textSize="20dp"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/usuarioLabeç"
-        android:layout_alignParentStart="true" />
+        android:text="Senha:"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/senha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12345678"
-        android:textSize="15dp"
-        android:gravity="center"
         android:layout_alignBottom="@+id/senhaLabel"
+        android:layout_alignTop="@+id/senhaLabel"
         android:layout_toEndOf="@+id/tipoFuncLabel"
-        android:layout_alignTop="@+id/senhaLabel" />
+        android:gravity="center"
+        android:text="12345678"
+        android:textSize="15dp" />
 
 
 </RelativeLayout>

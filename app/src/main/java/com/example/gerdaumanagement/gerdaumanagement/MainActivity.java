@@ -9,9 +9,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import SQLITE.db_funcao;
+import acessoWS.usuarioDAO;
+import acessoWS.usuarioService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-
 
 
     @Override
@@ -28,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void entrarSistema(View view) {
-        db_funcao bd = new db_funcao(this);
-        EditText login = (EditText) findViewById(R.id.usuario);
+        final db_funcao bd = new db_funcao(this);
+        usuarioDAO dao = new usuarioDAO();
+
+
+        final EditText login = (EditText) findViewById(R.id.usuario);
         EditText senha = (EditText) findViewById(R.id.senha);
 
 
@@ -42,54 +51,57 @@ public class MainActivity extends AppCompatActivity {
             if (senha.getText().length() == 0) {
                 senha.setError("Campo vazio");
             } else {
-                if (senha.getText().length() < 6 ) {
+                if (senha.getText().length() < 6) {
                     senha.setError("Senha incorreta");
                 } else {
 
-                    if (bd.login(login.getText().toString(),senha.getText().toString()) != 1 ){
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl(usuarioService.BASE_URL).addConverterFactory(GsonConverterFactory.create(usuarioService.g)).build();
+                    usuarioService service = retrofit.create(usuarioService.class);
+                    Call<String> user = service.verificarUsuario(login.getText().toString(), senha.getText().toString());
+                    user.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            String resultado = response.body();
+
+                            if (resultado.equals("false")) {
+                                Toast toast = Toast.makeText(MainActivity.this, "Senha ou usuário não existente", Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.TOP | Gravity.CENTER_VERTICAL, 0, 0);
+                                toast.show();
+                            } else {
+                                if (resultado.equals("true")) {
+                                    Toast toast = Toast.makeText(MainActivity.this, "ACESSO PERMITIDO", Toast.LENGTH_SHORT);
+                                    toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
+                                    toast.show();
+
+                                    Intent intent = new Intent(MainActivity.this, MenuDrawer.class);
+
+                                   intent.putExtra("chave1", login.getText().toString());
+
+                                    startActivity(intent);
+
+                                    finish();
 
 
 
-                        Toast toast = Toast.makeText(MainActivity.this, "Senha ou usuário não existente", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.TOP | Gravity.CENTER_VERTICAL, 0, 0);
-                        toast.show();
+                            }
+                        }
+
 
                     }
-                    else{
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
 
+                        }
 
-                        //TOAST LOGIN
-                        Toast toast = Toast.makeText(MainActivity.this, "ACESSO PERMITIDO", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
-                        toast.show();
-
-                       /* MenuDrawer menuDrawer = new MenuDrawer();
-                        menuDrawer.AlterarPerfil(bd.verificarUsuario(login.getText().toString()),bd.verificarCargo(login.getText().toString()));*/
-                        String nome =  bd.verificarUsuario(login.getText().toString());
-                        String cargo = bd.verificarCargo(login.getText().toString());
-
-
-                        Intent intent = new Intent(this, MenuDrawer.class);
-
-                        intent.putExtra("chave1", nome);
-                        intent.putExtra("chave2", cargo);
-
-
-                        startActivity(intent);
-
-                        finish();
-
-                    }
-
-
-
-
-                }
-
+                });
             }
 
         }
+
     }
+    }
+
+
 
     //CHAMA UMA ACTIVITY (TELA)
     void recuperarSenha(View view) {

@@ -30,10 +30,8 @@ import pojos.tiposAvaliacao;
  */
 public class preencherAmc extends Fragment {
 
-    private pojos.amc amc = new amc();
-
-
     ArrayList<Character> potenciais = new ArrayList<>();
+    private pojos.amc amc = new amc();
 
     public preencherAmc() {
         // Required empty public constructor
@@ -60,8 +58,8 @@ public class preencherAmc extends Fragment {
         });
 
         Intent intent = getActivity().getIntent();
-        if(intent != null){
-            if(getArguments() != null){
+        if (intent != null) {
+            if (getArguments() != null) {
 
                 getArguments().getString("nome", "");
                 getArguments().getString("contratada", "");
@@ -85,26 +83,25 @@ public class preencherAmc extends Fragment {
         }
         List<tiposAvaliacao> dadosQuestoes = null;
 
-        if(amc.getTipo().equals("Mensal")){
+        if (amc.getTipo().equals("Mensal")) {
             ((MenuDrawer) getActivity()).setActionBarTitle("AMC Mensal");
-            dadosQuestoes= todosMensal();
+            dadosQuestoes = todosMensal();
 
-        }else {
-            if(amc.getTipo().equals("Trimestral")){
+        } else {
+            if (amc.getTipo().equals("Trimestral")) {
                 ((MenuDrawer) getActivity()).setActionBarTitle("AMC Trimestral");
-                dadosQuestoes= todosTrimestral();
-            }else
-            {
-                if(amc.getTipo().equals("Semestral")){
+                dadosQuestoes = todosTrimestral();
+            } else {
+                if (amc.getTipo().equals("Semestral")) {
                     ((MenuDrawer) getActivity()).setActionBarTitle("AMC Semestral");
-                    dadosQuestoes= todosSemestral();
+                    dadosQuestoes = todosSemestral();
                 }
             }
         }
 
 
         //ArrayAdapter<AvaliacaoMensal> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, mensal);
-        for(int i =0; i< dadosQuestoes.size();i++){
+        for (int i = 0; i < dadosQuestoes.size(); i++) {
             final tiposAvaliacao pegarpotencial = dadosQuestoes.get(i);
 
             potenciais.add(pegarpotencial.getPotencial());
@@ -212,6 +209,100 @@ public class preencherAmc extends Fragment {
         return dadosSemestral;
     }
 
+    public void salvarAmc(View view) {
+
+        int flag = 0;
+        for (int i = 0; i < amc.respostas.size(); i++) {
+
+            if (amc.respostas.get(i) == 1000) {
+
+                flag = 1;
+
+            }
+        }
+
+        if (flag == 1) {
+            Toast.makeText(getActivity(), "Responda todas questões", Toast.LENGTH_SHORT).show();
+        } else {
+            amc.resultado = calcularResultado();
+            String salvarString = null;
+            for (int j = 0; j < amc.respostas.size(); j++) {
+                salvarString = salvarString + "," + amc.respostas.get(j);
+            }
+
+            amc.setRespostasString(salvarString);
+            db_funcao bd = new db_funcao(getContext());
+            bd.inserirAmc(amc);
+
+
+            Toast.makeText(getActivity(), "Avaliação inserida com sucesso!", Toast.LENGTH_SHORT).show();
+            tecAmc tecAmc = new tecAmc();
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction().replace(R.id.content, tecAmc, tecAmc.getTag()).commit();
+
+        }
+
+
+    }
+
+    private double calcularResultado() {
+        int resultado = 0;
+        int resultado1 = 0;
+
+        for (int i = 0; i < potenciais.size(); i++) {
+            if (amc.respostas.get(i) == 2131624064) {
+
+                if (potenciais.get(i) == 'A') {
+
+                    resultado += 3;
+                } else {
+                    if (potenciais.get(i) == 'B') {
+                        resultado += 2;
+                    } else {
+                        if (potenciais.get(i) == 'C') {
+                            resultado += 1;
+                        }
+                    }
+                }
+
+            } else {
+                resultado += 0;
+            }
+
+            if (amc.respostas.get(i) == 2131624066) {
+
+                resultado1 += 0;
+
+            } else {
+
+                if (potenciais.get(i) == 'A') {
+                    resultado1 += 3;
+                } else {
+                    if (potenciais.get(i) == 'B') {
+                        resultado1 += 2;
+                    } else {
+                        if (potenciais.get(i) == 'C') {
+                            resultado1 += 1;
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+
+        if (resultado == 0 || resultado1 == 0) {
+            return 0;
+        } else {
+
+
+            double resultadoFinal = ((double) resultado / (double) resultado1) * 100;
+
+            return (resultadoFinal);
+        }
+
+    }
 
     class AdapterAmcPersonalizada extends BaseAdapter {
 
@@ -265,8 +356,8 @@ public class preencherAmc extends Fragment {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                        amc.respostas.remove(position);
-                        amc.respostas.add(position,checkedId);
+                    amc.respostas.remove(position);
+                    amc.respostas.add(position, checkedId);
 
 
                     dadosAmc.setSelectedRadioButtonId(checkedId);
@@ -275,104 +366,6 @@ public class preencherAmc extends Fragment {
 
             });
             return view;
-        }
-
-    }
-
-    public void salvarAmc(View view){
-
-        int flag = 0;
-        for(int i =0 ; i< amc.respostas.size();i++){
-
-            if(amc.respostas.get(i)== 1000){
-
-                flag =1;
-
-            }
-        }
-
-        if(flag == 1){
-            Toast.makeText(getActivity(), "Responda todas questões", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            amc.resultado = calcularResultado();
-            String salvarString = null;
-            for(int j = 0; j < amc.respostas.size();j++){
-                salvarString = salvarString +","+ amc.respostas.get(j);
-            }
-
-            amc.setRespostasString(salvarString);
-            db_funcao bd = new db_funcao(getContext());
-            bd.inserirAmc(amc);
-
-
-            Toast.makeText(getActivity(), "Avaliação inserida com sucesso!", Toast.LENGTH_SHORT).show();
-            tecAmc tecAmc = new tecAmc();
-            FragmentManager manager = getFragmentManager();
-            manager.beginTransaction().replace(R.id.content,tecAmc, tecAmc.getTag()).commit();
-
-        }
-
-
-    }
-
-
-    private double calcularResultado() {
-        int resultado = 0;
-        int resultado1= 0;
-
-        for(int i=0;i<potenciais.size();i++) {
-            if (amc.respostas.get(i) == 2131624064) {
-
-                if (potenciais.get(i) == 'A') {
-
-                    resultado += 3;
-                } else {
-                    if (potenciais.get(i) == 'B') {
-                        resultado += 2;
-                    } else {
-                        if (potenciais.get(i) == 'C') {
-                            resultado += 1;
-                        }
-                    }
-                }
-
-            } else {
-                resultado += 0;
-            }
-
-            if (amc.respostas.get(i) == 2131624066) {
-
-                resultado1 += 0;
-
-            } else {
-
-                if (potenciais.get(i) == 'A') {
-                    resultado1 += 3;
-                } else {
-                    if (potenciais.get(i) == 'B') {
-                        resultado1 += 2;
-                    } else {
-                        if (potenciais.get(i) == 'C') {
-                            resultado1 += 1;
-                        }
-                    }
-                }
-
-            }
-
-        }
-
-
-        if(resultado == 0 || resultado1 == 0){
-            return 0;
-        }else
-        {
-
-
-            double resultadoFinal = ((double)resultado/(double)resultado1)*100;
-
-            return (resultadoFinal);
         }
 
     }
